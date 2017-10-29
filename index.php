@@ -9,4 +9,4 @@
 
 ?>
 
-<h1>Hallo Welt</h1>
+<h1>Hallo Welt!</h1>
