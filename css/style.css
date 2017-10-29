@@ -4,6 +4,9 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700');
 
 body {font-family: 'Lato', sans-serif; padding-top: 80px;}
+a {
+    text-decoration: none;
+    color: #d2b598;  }
 * {margin: 0; padding: 0;}
 .inner-wrapper {display: block; width: 100%; max-width: 1280px; margin: 0 auto;}
 .inner-wrapper.content {margin: 60px auto;}
@@ -124,12 +127,46 @@ position: relative;
 }
 .ptitle {
     font-size: 26px;
-text-align: center;}
+    text-align: center;
+    color: #202020;}
 .pprice{
     font-size: 16px;
     text-align: center;
 color: #d2b598;}
 
+/** Single Product **/
+
+.col2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 40px;
+}
+
+.prod_image {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.prod_right {
+    padding: 20px 0;
+}
+.prod_title {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+.prod_price {
+    font-size: 26px;
+    color: #d2b598;
+    display: block;
+    margin: 20px 0;
+}
+.prod_desc {
+    font-size: 16px;
+    color: #666666;
+    display: block;
+    margin: 20px 0;
+}
 /** Footer **/
 footer {display: block; height: auto; text-align: center; color: #303030; border-top: 1px solid #EEEEEE;}
 footer p {padding: 20px 0;}

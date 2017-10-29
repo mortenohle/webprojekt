@@ -80,6 +80,9 @@
                 case "about":
                     include "about/index.php";
                     break;
+                case "product":
+                    include "product/index.php";
+                    break;
                 default:
                     include "start.php";
                     break;
