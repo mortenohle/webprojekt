@@ -31,29 +31,28 @@
         </div>
     </div>
 
-    <div class="product-row">
-        <div class="product-col">
-            <div class="img-thumb">
 
-            </div>
-        </div>
-        <div class="product-col">
-            Testprodukt
-        </div>
-        <div class="product-col">
-            12345
-        </div>
-        <div class="product-col">
-            Shirts
-        </div>
-        <div class="product-col">
-            19,99€
-        </div>
-        <div class="product-col actions">
-            <span><i class="fa fa-eye" aria-hidden="true"></i></span>
-            <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
-            <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-        </div>
-    </div>
+<?php
+include_once('../db/connect.php');
 
+$sql = "SELECT * FROM products ORDER BY id ASC";
+
+foreach ($con->query($sql) as $row) {
+echo "<div class='product-row'>";
+echo "
+<div class='product-col'>
+    <div class='img-thumb'></div>
 </div>
+<div class='product-col'>".$row['name']."</div>
+<div class='product-col'>".$row['artnr']."</div>
+<div class='product-col'>".$row['categories']."</div>
+<div class='product-col'>".$row['price']." €</div>
+<div class='product-col actions'>
+<span><i class='fa fa-eye' aria-hidden='true'></i></span>
+<span><i class='fa fa-pencil' aria-hidden='true'></i></span>
+<span><i class='fa fa-trash' aria-hidden='true'></i></span>
+</div>
+";
+echo "</div>";
+}
+?>
