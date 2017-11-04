@@ -151,7 +151,6 @@ color: #d2b598;}
 .prod_title {
     display: block;
     font-size: 30px;
-    margin-bottom: 30px;
 }
 .prod_price {
     font-size: 26px;
@@ -165,6 +164,40 @@ color: #d2b598;}
     display: block;
     margin: 20px 0;
 }
+.prod_categories {
+    border-top: 1px solid #eee;
+    padding: 20px 0px;
+    font-size: 16px;
+}
+/** Single Product Add to Cart **/
+.prod_addtocart {
+    margin: 30px 0px;
+}
+.quantity {
+    display: inline-block;
+    width: 30px;
+    padding: 12px 15px;
+    border: 1px solid #EEEEEE;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.addtocart_button {cursor:pointer; width: 250px; background: transparent; display: inline-block; color: #d2b598; padding: 12px 40px; border: 1px solid #d2b598; border-radius: 5px; text-decoration: none; font-size: 15px; transition: all 300ms ease-in-out; -webkit-transition: all 300ms ease-in-out; -moz-transition: all 300ms ease-in-out;}
+.addtocart_button:hover {background: #d2b598; color: #FFF;}
+
+
 /** Footer **/
 footer {display: block; height: auto; text-align: center; color: #303030; border-top: 1px solid #EEEEEE;}
 footer p {padding: 20px 0;}
+
+/** basic input styling */
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border:none;
+    border-radius: 0;
+    font-size: 1em;
+    width: 100%
+}
+textarea, input, button {outline: none;}

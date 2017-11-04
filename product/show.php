@@ -22,6 +22,28 @@ else {
             <span class="prod_price"><?php echo $result["price"]; ?> €</span><br>
             <span class="prod_desc"><?php echo $result["desc"]; ?></span><br>
 
+            <div class="prod_addtocart">
+
+                <form action="index.php?page=cart" method="post">
+                    <input class="quantity" type="number" name="quantity" min="1" max="9" step="1" value="1">
+                    <input type="hidden" value="<?php echo $result["id"]; ?>">
+                    <input class="addtocart_button" type="submit" value="In den Einkaufswagen">
+                </form>
+
+            </div>
+<?php
+//Kategorien Abfrage
+$sql2 = "SELECT * FROM categories WHERE id = ".$result["category_id"];
+$cat = $con->query($sql2);
+$result2 = $cat->fetch();
+?>
+            <div class="prod_categories">
+                <span><b>Kategorie:</b> <a href="index.php?page=category&category=<?php echo $result2["id"]; ?>"><?php echo $result2["name"]; ?></a></span>
+
+
+            </div>
+            </div>
+
 
         </div>
 
