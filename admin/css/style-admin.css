@@ -4,6 +4,9 @@ body {font-family: 'Lato', sans-serif; background: #EEEEEE;}
 * {margin: 0; padding: 0;}
 h1 {font-weight: 300; margin-bottom: 20px;}
 h2 {font-size: 24px; font-weight: 300;}
+h2.padding {padding-bottom: 20px;}
+h2.divider {margin-bottom: 30px;}
+h2.divider::after {content: ""; display: block; width: 80px; height: 2px; background: #d2b598; margin-top: 15px;}
 a.btn-link {display: inline-block; background: #d2b598; text-decoration: none; color: #FFF; padding: 12px 30px;}
 
 /** Header **/
@@ -68,10 +71,19 @@ li.home::before {content: "\f015"; font-family: FontAwesome; padding-right: 10px
 
 /** Formular **/
 .admin-form {display: block; width: 100%; max-width: 600px;}
-.admin-form .row {display: block; margin-bottom: 16px;}
+.admin-form p {color: #666; line-height: 22px; padding-bottom: 15px;}
+.admin-form .row, .admin-form .row-2-col {display: block; margin-bottom: 16px;}
+.admin-form .row.divider {border-top: 1px solid #DDD; margin-top: 30px; padding-top: 30px;}
 .admin-form .row-2-col .col {padding: 0;}
+.admin-form .row-2-col .col img {width: 100%; height: auto;}
 .admin-form .row-2-col .col:last-child {margin-right: 0;}
-.admin-form input[type="text"], .admin-form select {appearance: none; -webkit-appearance: none; -moz-appearance: none; width: 100%; box-sizing: border-box; border: 1px solid #DDD; padding: 12px; font-size: 15px; color: #666;}
-.admin-form select {border-radius: 0; background-color: #FFF;}
+.admin-form input[type="text"], .admin-form select, .admin-form textarea {appearance: none; -webkit-appearance: none; -moz-appearance: none; width: 100%; box-sizing: border-box; border: 1px solid #DDD; padding: 12px; font-size: 15px; color: #666;}
+.admin-form textarea {height: 120px; max-width: 100%;}
+.admin-form select {border-radius: 0; background-color: #FFF; background-image: url("../../images/select.png"); background-position: right; background-repeat: no-repeat;}
 .admin-form input[type="text"]:focus, .admin-form select:focus {outline: none; border-color: #d2b598;}
+.admin-form input[type="submit"] {appearance: none; -webkit-appearance: none; -moz-appearance: none; background: #d2b598; border: 1px solid #d2b598; color: #FFF; padding: 12px 30px; font-size: 15px; cursor: pointer; transition: all 300ms ease-in-out; -webkit-transition: all 300ms ease-in-out; -moz-transition: all 300ms ease-in-out;}
+.admin-form input[type="submit"]:hover {background: #fff; color: #d2b598;}
 span.input-heading {display: block; padding-bottom: 10px; font-size: 14px;}
+.file-label {display: inline-block; padding: 10px 15px; border: 1px solid #DDDDDD; color: #666666; font-size: 15px; margin-bottom: 10px; cursor: pointer; box-sizing: border-box; width: 100%;}
+.file-label:before {content: '\f093'; font-family: 'FontAwesome'; margin-right: 10px;}
+#file {display: none;}
