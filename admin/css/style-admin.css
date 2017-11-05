@@ -54,6 +54,18 @@ li.home::before {content: "\f015"; font-family: FontAwesome; padding-right: 10px
 .product-row .product-col a {color: #666; text-decoration: none;}
 .product-row .product-col a:hover {color: #d2b598;}
 
+/** Kategorien **/
+.category-row {display: block; width: 100%; font-size: 0; border-bottom: 1px solid #EEE; padding-bottom: 20px; margin-bottom: 20px;}
+.category-row:last-child {border-bottom: 0; padding-bottom: 0; margin-bottom: 0;}
+.category-row.heading {padding-bottom: 20px; margin-top: 30px;}
+.category-row .category-col {display: inline-block; font-size: 15px; vertical-align: top; color: #666; width: 45%;}
+.category-row .category-col:first-child {width: 10%;}
+.category-row .category-col:last-child {text-align: right;}
+.category-row.heading .category-col {color: #000; font-weight: 700;}
+.category-row .category-col.actions span {display: inline-block; padding-left: 7px;}
+.category-row .category-col a {color: #666; text-decoration: none;}
+.category-row .category-col a:hover {color: #d2b598;}
+
 /** Formular **/
 .admin-form {display: block; width: 100%; max-width: 600px;}
 .admin-form .row {display: block; margin-bottom: 16px;}

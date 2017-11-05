@@ -21,7 +21,7 @@
         <ul>
             <li><a href="index.php">Dashboard</a></li>
             <li><a href="index.php?page=product&action=show">Produkte</a></li>
-            <li><a href="#">Kategorien</a></li>
+            <li><a href="index.php?page=category&action=show">Kategorien</a></li>
             <li><a href="#">Bestellungen</a></li>
         </ul>
     </div>
