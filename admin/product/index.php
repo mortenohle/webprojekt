@@ -10,6 +10,9 @@ if (isset($_GET["action"]))
         case "edit":
             include "product/edit.php";
             break;
+        case "editsuccess":
+            include "product/edit.php";
+            break;
         case "new":
             include "product/new.php";
             break;
