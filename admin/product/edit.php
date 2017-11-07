@@ -90,6 +90,7 @@ if ($_GET["action"] == "edit") {
                 <div class="row-2-col">
                     <div class="col">
                         <img src="../images/products/<?php echo $imgurl; ?>" alt="Produktbild" id="productimage">
+                        <input type="hidden" name="current_img" value="<?php echo $imgurl; ?>">
                     </div>
 
                     <div class="col">
@@ -122,7 +123,7 @@ if ($_GET["action"] == "edit") {
         $stmt->bindParam(':category_id', $product_category);
         $stmt->bindParam(':price', $product_price);
         $stmt->bindParam(':artnr', $product_artnr);
-        $stmt->bindParam(':img', $product_img);
+        $stmt->bindParam(':img', $product_img_url);
         $stmt->bindParam(':id', $product_id);
 
         $product_name = $_POST['product_name'];
@@ -130,19 +131,27 @@ if ($_GET["action"] == "edit") {
         $product_category = $_POST['product_category'];
         $product_price = $_POST['product_price'];
         $product_artnr = $_POST['product_artnr'];
-        $product_img = $_POST['product_image'];
         $product_id = $_POST['product_id'];
+        $product_img = $_FILES['product_image']['name'];
+
+        $current_img = $_POST['current_img'];
+
+        if ($product_img == "") {
+            $product_img_url = $current_img;
+        } else {
+            $product_img_url = $product_img;
+        }
 
         $stmt->execute();
 
         echo " Die Änderungen wurden erfolgreich übernommen";
+
         }
         catch(PDOException $e)
         {
             echo "Error: " . $e->getMessage();
         }
         $con = null;
-
 
     }
 
