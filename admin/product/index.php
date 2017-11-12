@@ -16,6 +16,9 @@ if (isset($_GET["action"]))
         case "new":
             include "product/new.php";
             break;
+        case "newsuccess":
+            include "product/new.php";
+            break;
         default:
             echo "Die Seite wurde nicht gefunden";
             die();
