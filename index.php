@@ -34,11 +34,26 @@
             <ul class="">
                 <li>Einloggen</li>
                 <li class="warenkorb"><img src="images/warenkorb.svg" alt="Warebkorb"></li>
-                <li><img src="images/suche.svg" alt="Suche" class="search-icon"></li>
+                <li class="toggle-search"><img src="images/suche.svg" alt="Suche" class="search-icon"></li>
             </ul>
         </div>
     </div>
 </header>
+
+<div id="search-input-wrapper">
+    <div class="inner-wrapper">
+        <form>
+            <div class="search-input">
+                <input type="text" name="main-search" id="main-search" placeholder="Suchbegriff eingeben">
+            </div>
+            <div class="search-submit">
+                <button type="submit">
+                    <img src="images/search_input.svg" alt="Suchen">
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <?php if (!isset($_GET["page"]) ) { ?>
 

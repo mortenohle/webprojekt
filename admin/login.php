@@ -13,12 +13,17 @@
 </head>
 
 <body>
-<div id="admin-login-wrapper">
+    <div id="admin-login-wrapper">
 
-<div id="admin-form-login-wrapper">
-    <div class="form-logo">Logo</div>
-    <?php include("session/login-form.php"); ?>
-</div>
-</div>
+        <div id="admin-form-login-wrapper">
+            <div class="inner">
+                <div class="form-logo">Logo</div>
+                <?php include("session/login-form.php"); ?>
+            </div>
+            <div class="back-to-main">
+                <a href="../index.php">Zurück zum Shop</a>
+            </div>
+        </div>
+    </div>
 
 </body>
