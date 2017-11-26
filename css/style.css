@@ -10,7 +10,7 @@ a {text-decoration: none; color: #d2b598;}
 .inner-wrapper.content {margin: 60px auto;}
 h1 {font-weight: 300; padding: 0 0 30px 0;}
 p {color: #666666;}
-a.btn-link {display: inline-block; color: #d2b598; padding: 12px 40px; border: 1px solid #d2b598; border-radius: 30px; text-decoration: none; font-size: 15px; transition: all 300ms ease-in-out; -webkit-transition: all 300ms ease-in-out; -moz-transition: all 300ms ease-in-out;}
+a.btn-link {display: inline-block; color: #d2b598; padding: 12px 40px; border: 1px solid #d2b598; border-radius: 5px; text-decoration: none; font-size: 15px; transition: all 300ms ease-in-out; -webkit-transition: all 300ms ease-in-out; -moz-transition: all 300ms ease-in-out;}
 a.btn-link:hover {background: #d2b598; color: #FFF;}
 
 /** Header **/
@@ -50,7 +50,7 @@ header.shrinked nav > ul > li {height: 60px; line-height: 60px;}
 #search-input-wrapper input, #search-input-wrapper button {-webkit-appearance: none; -moz-appearance: none; appearance: none;}
 #search-input-wrapper input[type="text"] {border: none; color: #999; background: none; height: 60px; margin: 12px 0; font-size: 20px; font-weight: 300; letter-spacing: 1px;}
 button[type="submit"] {background: none; border: none; height: 84px;}
-button[type="submit"] img {width: 30px; height: auto;}
+button[type="submit"] img {width: 24px; height: auto;}
 
 /** Slider **/
 #main-slider {width: 100%; height: 500px; position: relative; overflow: hidden;}
@@ -196,8 +196,21 @@ color: #d2b598;}
 
 
 /** Footer **/
-footer {display: block; height: auto; text-align: center; color: #303030; border-top: 1px solid #EEEEEE;}
+footer {display: block; height: auto; text-align: center; color: #AAA; background-color: #282828; text-align: center; padding: 40px 0;}
+.social-icon {width: 40px; height: 40px; border: 1px solid #AAA; border-radius: 20px; box-sizing: border-box; display: inline-block; margin-right: 10px; vertical-align: top; line-height: 38px;}
+.social-icon:hover {background: #AAA; color: #282828;}
+.social-bar a:last-child .social-icon {margin-right: 0;}
+footer a {color: #AAA;}
 footer p {padding: 20px 0;}
+.footer-menu {font-size: 14px; padding: 30px 0;}
+.footer-menu ul li {display: inline; list-style: none; padding-right: 10px; font-weight: 300;}
+.footer-menu ul li a {transition: all 300ms ease-in-out; -webkit-transition: all 300ms ease-in-out; -moz-transition: all 300ms ease-in-out;}
+.footer-menu ul li a:hover {color: #d2b598;}
+.footer-menu ul li:after {content: "|"; padding-left: 10px;}
+.footer-menu ul li:last-child {padding-right: 0;}
+.footer-menu ul li:last-child::after {content: "";}
+.footer-bottom-text {font-size: 14px; font-weight: 300;}
+.footer-bottom-text .fa {color: #d2b598;}
 
 /** basic input styling */
 
