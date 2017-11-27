@@ -34,17 +34,11 @@
             <ul class="">
                 <li>Einloggen</li>
                 <li class="warenkorb"><img src="images/warenkorb.svg" alt="Warebkorb"></li>
-                <li class="toggle-search"><img src="images/suche.svg" alt="Suche" class="search-icon"></li>
+                <li><img src="images/suche.svg" alt="Suche" class="search-icon"></li>
             </ul>
         </div>
     </div>
 </header>
-
-<div id="search-input-wrapper">
-    <div class="inner-wrapper">
-        <?php include ('search/search_form.php'); ?>
-    </div>
-</div>
 
 <?php if (!isset($_GET["page"]) ) { ?>
 
@@ -89,8 +83,8 @@
                 case "product":
                     include "product/index.php";
                     break;
-                case "search":
-                    include "search/search.php";
+                case "cart":
+                    include "cart/index.php";
                     break;
                 default:
                     include "start.php";
@@ -108,37 +102,7 @@
 </div>
 
 <footer>
-    <div class="social-bar">
-        <a href="#">
-            <div class="transition social-icon facebook">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-            </div>
-        </a>
-        <a href="#">
-            <div class="transition social-icon twitter">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-            </div>
-        </a>
-        <a href="#">
-            <div class="transition social-icon instagram">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-            </div>
-        </a>
-    </div>
-
-    <div class="footer-menu">
-        <ul>
-            <li><a href="#">Kontakt</a></li>
-            <li><a href="#">AGBs</a></li>
-            <li><a href="#">Datenschutz</a></li>
-            <li><a href="#">Impressum</a></li>
-        </ul>
-    </div>
-
-    <div class="footer-bottom-text">
-        Made with <i class="fa fa-heart-o" aria-hidden="true"></i> in Stuttgart
-    </div>
-
+    <p>Footer Webprojekt</p>
 </footer>
 
 </body>
