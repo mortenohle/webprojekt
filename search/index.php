@@ -1,10 +1,10 @@
 <?php
 
-if (isset($_GET["search"]))
+if (isset($_GET["page"]))
 {
 
-    switch ($_GET["search"]) {
-        case "searchterm":
+    switch ($_GET["page"]) {
+        case "search":
             include "search/search.php";
             break;
         default:
@@ -14,7 +14,7 @@ if (isset($_GET["search"]))
     }
 
 } else {
-    echo "Die Seite wurde nicht gefunden";
+    echo "Die Seite wurde nicht gefunden 123";
 }
 
 ?>

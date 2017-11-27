@@ -93,6 +93,9 @@
                 case "cart":
                     include "cart/index.php";
                     break;
+                case "search":
+                    include "search/index.php";
+                    break;
                 default:
                     include "start.php";
                     break;
@@ -107,9 +110,35 @@
 
     </div>
 </div>
-
 <footer>
-    <p>Footer Webprojekt</p>
+    <div class="social-bar">
+        <a href="#">
+             <div class="transition social-icon facebook">
+             <i class="fa fa-facebook" aria-hidden="true"></i>
+             </div>
+        </a>
+        <a href="#">
+            <div class="transition social-icon twitter">
+                               <i class="fa fa-twitter" aria-hidden="true"></i>
+            </div>
+        </a>
+        <a href="#">
+            <div class="transition social-icon instagram">
+                               <i class="fa fa-instagram" aria-hidden="true"></i>
+            </div>
+        </a>
+    </div>
+    <div class="footer-menu">
+               <ul>
+                       <li><a href="#">Kontakt</a></li>
+                   <li><a href="#">AGBs</a></li>
+                   <li><a href="#">Datenschutz</a></li>
+                   <li><a href="#">Impressum</a></li>
+               </ul>
+    </div>
+       <div class="footer-bottom-text">
+               Made with <i class="fa fa-heart-o" aria-hidden="true"></i> in Stuttgart
+       </div>
 </footer>
 
 </body>
