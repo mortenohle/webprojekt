@@ -34,11 +34,18 @@
             <ul class="">
                 <li>Einloggen</li>
                 <li class="warenkorb"><img src="images/warenkorb.svg" alt="Warebkorb"></li>
-                <li><img src="images/suche.svg" alt="Suche" class="search-icon"></li>
+                <li class="toggle-search"><img src="images/suche.svg" alt="Suche" class="search-icon"></li>
             </ul>
         </div>
     </div>
 </header>
+
+<div id="search-input-wrapper">
+    <div class="inner-wrapper">
+        <?php include ('search/search_form.php'); ?>
+    </div>
+</div>
+
 
 <?php if (!isset($_GET["page"]) ) { ?>
 

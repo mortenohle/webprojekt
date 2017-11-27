@@ -87,6 +87,11 @@ button[type="submit"] img {width: 24px; height: auto;}
     display: block;
     margin-bottom: 30px;
 }
+.category-filter {}
+.category-filter ul li {display: inline; margin-right: 10px;}
+.category-filter ul li:after {content: "|"; padding-left: 10px; color: #666;}
+.category-filter ul li:last-child:after {content: ""; padding: 0;}
+.category-filter ul li a {color: #666;}
 
 /** Product Grid Layout **/
 .pwrapper {

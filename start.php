@@ -1,13 +1,24 @@
-
+<?php
+include_once('db/connect.php');
+?>
 <div class='startintro'>
-<h1>Webprojekt Startseite</h1>
-<p>Das ist die Startseite. Test</p>
+<h1>Neues aus unserem Shop</h1>
+    <div class="category-filter" style="display: none;">
+        <ul>
+            <li><a href="#">Alle anzeigen</a></li>
+            <?php
+            $sql_cat = "SELECT categories.*, products.name AS p_name FROM categories INNER JOIN products ON categories.id = products.category_id ORDER BY id ASC";
+            foreach ($con->query($sql_cat) as $row_cat) {
+                echo "<li> ".$row_cat["name"]."</li>";
+            }
+            ?>
+        </ul>
+    </div>
 </div>
 
 <div class="pwrapper">
 
 <?php
-include_once('db/connect.php');
 
 $sql = "SELECT * FROM products ORDER BY id ASC";
 

@@ -63,4 +63,3 @@ if ($product_count == 0) {
 }
 
 ?>
-
