@@ -35,4 +35,10 @@ $(document).ready(function () {
         }
     });
 
+    // Mobile Nav Toggle
+    $('.mobile-menu-toggle').stop().click(function() {
+        $('.nav-wrap').slideToggle(500);
+        $(this).find('img').toggle();
+    });
+
 }); // End Document Ready

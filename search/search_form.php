@@ -5,7 +5,8 @@
     </div>
     <div class="search-submit">
         <button type="submit">
-            <img src="images/search_input.svg" alt="Suchen">
+            <img src="images/search_input.svg" alt="Suchen" class="i-search-desktop">
+            <img src="images/search_input_white.svg" alt="Suchen" class="i-search-mobile">
         </button>
     </div>
 </form>
