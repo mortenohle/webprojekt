@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!doctype html>
 <html>
 <head>
@@ -45,7 +48,20 @@
             </a>
             <div class="nav-right">
                 <ul class="">
-                    <li>Einloggen</li>
+                    <?php if(isset($_SESSION["username"])) { ?>
+                       <li class="loggedinuser">Hallo, <?php echo $_SESSION['username']; ?>
+                           <ul class="transition">
+                               <div class="user-dropdown-wrap">
+                               <li class="user-profile"><a href="index.php?page=account&action=myprofile">Mein Profil</a></li>
+                               <li class="user-orders"><a href="#">Meine Bestellungen</a></li>
+                               <li class="user-logout"><a href="index.php?page=account&action=logout">Abmelden</a></li>
+                               </div>
+                           </ul>
+                       </li>
+                    <?php } else { ?>
+                        <li><a href='index.php?page=account&action=login'>Einloggen</a></li>
+                    <?php } ?>
+
                     <li class="warenkorb"><img src="images/warenkorb.svg" alt="Warebkorb"><span class="li-cart-mobile">Warenkorb</span></li>
                     <li class="toggle-search"><img src="images/suche.svg" alt="Suche" class="search-icon"></li>
                 </ul>
@@ -58,7 +74,7 @@
 </header>
 
 <div id="search-input-wrapper">
-    <div class="inner-wrapper">
+    <div class="inner-wrapper search-desk">
         <?php include ('search/search_form.php'); ?>
     </div>
 </div>
@@ -112,6 +128,9 @@
                     break;
                 case "search":
                     include "search/index.php";
+                    break;
+                case "account":
+                    include "account/index.php";
                     break;
                 default:
                     include "start.php";

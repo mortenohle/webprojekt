@@ -25,7 +25,7 @@ $(document).ready(function () {
             searchInner.slideDown(300);
             search.removeClass('close');
             search.addClass('open');
-            $('#main-search').focus();
+            $('.search-desk #main-search').focus();
             $('.search-icon').attr('src', 'images/close.svg');
         } else {
             searchInner.slideUp(300);
