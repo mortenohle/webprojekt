@@ -22,4 +22,7 @@ if($_POST["coupon"]) {
 }
 if($_POST["checkout"]) {
 
+    include_once('cart/checkout.php');
+    
+
 }

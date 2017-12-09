@@ -19,6 +19,9 @@ if (isset($_GET["cart"]))
         case "delete":
             include "cart/delete.php";
             break;
+        case "checkout":
+            include "cart/checkout.php";
+            break;
         default:
             echo "Die Seite wurde nicht gefunden";
             die();

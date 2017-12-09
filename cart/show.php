@@ -24,7 +24,7 @@ foreach ($cart_items  AS $prod_id => $prod_qty) {
     }
 }
 ?>
-<form action="index.php?page=cart&cart=update">
+<form action="index.php?page=cart&cart=update" method="post">
 <div class="cartbox">
 
     <div class="cart_header">
