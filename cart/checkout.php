@@ -32,7 +32,7 @@ foreach ($cart_items  AS $prod_id => $prod_qty) {
 ?>
 <div class="checkout">
 <h1>Kasse</h1>
-<form action='index.php?page=checkout&action=order'>
+<form action='index.php?page=cart&cart=processorder' method="post">
 
     <div class="checkout_details">
 <h2>Rechnungsdetails</h2>
@@ -135,7 +135,7 @@ foreach ($cart_items  AS $prod_id => $prod_qty) {
     </table>
 
     </div>
-    <input class='cart_update' type='submit' value='Kasse' name='checkout'>
+    <input type='submit' value='Kasse' name='checkout'>
 
 </form>
 
