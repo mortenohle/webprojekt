@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Webprojekt Onlineshop</title>
     <link href="css/style.css" type="text/css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
@@ -13,29 +14,45 @@
 <body>
 <header class="transition">
     <div class="inner-wrapper">
-        <div class="nav-left">
-            <nav>
-                <ul class="transition">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="index.php?page=category&category=all">Kategorien</a>
-                        <ul>
-                            <li><a href="index.php?page=category&category=shirts">Shirts</a></li>
-                            <li><a href="index.php?page=category&category=pullover">Pullover</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="index.php?page=about">Über uns</a></li>
+        <a href="index.php">
+            <div class="logo-mobile">
+                <span class="logo">Logo</span>
+            </div>
+        </a>
+        <div class="mobile-menu-toggle">
+            <img src="images/menu.svg" alt="Menü">
+            <img src="images/close.svg" alt="Menü" style="display: none;">
+        </div>
+        <div class="nav-wrap">
+            <div class="nav-left">
+                <nav>
+                    <ul class="transition">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="index.php?page=category&category=all">Kategorien</a>
+                            <ul>
+                                <li><a href="index.php?page=category&category=shirts">Shirts</a></li>
+                                <li><a href="index.php?page=category&category=pullover">Pullover</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="index.php?page=about">Über uns</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <a href="index.php">
+                <div class="logo-container">
+                    <span class="logo">Logo</span>
+                </div>
+            </a>
+            <div class="nav-right">
+                <ul class="">
+                    <li>Einloggen</li>
+                    <li class="warenkorb"><img src="images/warenkorb.svg" alt="Warebkorb"><span class="li-cart-mobile">Warenkorb</span></li>
+                    <li class="toggle-search"><img src="images/suche.svg" alt="Suche" class="search-icon"></li>
                 </ul>
-            </nav>
-        </div>
-        <div class="logo-container">
-            <span class="logo">Logo</span>
-        </div>
-        <div class="nav-right">
-            <ul class="">
-                <li>Einloggen</li>
-                <li class="warenkorb"><img src="images/warenkorb.svg" alt="Warebkorb"></li>
-                <li class="toggle-search"><img src="images/suche.svg" alt="Suche" class="search-icon"></li>
-            </ul>
+            </div>
+            <div class="mobile-search-input">
+                <?php include ('search/search_form.php'); ?>
+            </div>
         </div>
     </div>
 </header>
