@@ -82,26 +82,25 @@ button[type="submit"] img {width: 24px; height: auto;}
 #main-slider li {padding: 0; margin: 0; width: 33.333333%; height: 100%; position: absolute; top: 0; bottom: 0; border: none; background-size: cover; background-repeat: none; background-position: center top; list-style: none;}
 #main-slider .slide-nav {position: absolute; display: block; top: 50%; transform: translate(0, -50%); color: #FFF; margin: 0; padding: 0; opacity: 0; z-index: 2; font-size: 36px; cursor: pointer;}
 #main-slider .slide-nav:hover {color: #d2b598;}
-
-#main-slider .slide-nav.prev {
-    left: 0;
-    margin-left: 50px;
-}
-
-#main-slider .slide-nav.next {
-    right: 0;
-    margin-right: 50px;
-}
-
-#main-slider:hover .slide-nav {
-    opacity: 1.0;
-}
+#main-slider .slide-nav.prev {left: 0; margin-left: 50px;}
+#main-slider .slide-nav.next {right: 0; margin-right: 50px;}
+#main-slider:hover .slide-nav {opacity: 1.0;}
 #main-slider .inner-wrapper {position: relative; max-width: 1080px; height: 100%; margin-top: -20px;}
 .slide-content {z-index: 3; position: absolute; color: #FFF; top: 50%; transform: translate(0, -50%)}
 .slide-heading {display: block; font-weight: 300; font-size: 32px; letter-spacing: 2px; padding-bottom: 20px;}
 .slide-content p {font-size: 16px; font-weight: 300; color: #EEE; letter-spacing: 1px; line-height: 28px;}
 .slide-content a.btn-link {margin-top: 30px;}
 
+/** Pagination **/
+.category-info {color: #666; font-size: 14px;}
+#pagination-wrapper {display: block; text-align: center;}
+.pagination-controls {display: inline-block; width: auto;}
+a.pagination-link, .pagination-current, a.pagination-prev, a.pagination-next {display: inline-block; width: 36px; height: 36px; background: #EEE; color: #666; border-radius: 20px; box-sizing: border-box; line-height: 34px; transition: all 300ms ease-in-out; -webkit-transition: all 300ms ease-in-out; -moz-transition: all 300ms ease-in-out;}
+.pagination-controls .fa {font-size: 24px !important; position: relative; bottom: -2px;}
+.pag-item {margin-right: 10px;}
+.pagination-controls .pag-item:last-child {margin-right: 0;}
+.pagination-current {background: #d2b598; color: #FFF;}
+a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {background: #DDD;}
 
 #main-slider .content a {
     color: inherit;

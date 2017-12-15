@@ -31,7 +31,7 @@
                 <nav>
                     <ul class="transition">
                         <li><a href="index.php">Home</a></li>
-                        <li><a href="index.php?page=category&category=all">Kategorien</a>
+                        <li><a href="index.php?page=category&category=all">Produkte</a>
                             <ul>
                                 <li><a href="index.php?page=category&category=shirts">Shirts</a></li>
                                 <li><a href="index.php?page=category&category=pullover">Pullover</a></li>
