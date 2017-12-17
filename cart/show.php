@@ -7,23 +7,26 @@
  */
 include_once('db/connect.php');
 
-$test_cart = array(1 => 2);
-$cart_items = $test_cart;
-// $cart_items = $_SESSION["cart"];
+/* $test_cart = array(1 => 2);
+$cart_items = $test_cart; */
+$cart_items = $_SESSION["cart"];
 
 $cart_count = count($cart_items);
 $cart_ids = "";
-foreach ($cart_items  AS $prod_id => $prod_qty) {
-
+$i = 0;
+foreach ($cart_items  AS $prod_id) {
     if ($i == $cart_count - 1) {
-    $cart_ids .= "'". $prod_id ."')";
+        $cart_ids .= $prod_id["product_id"];
     }
     else {
-
-        $cart_ids .= "'". $prod_id ."', ";
+        $cart_ids .= $prod_id["product_id"] .",";
+        $i++;
     }
 }
+// echo $cart_ids;
+print_r($_SESSION["cart"]);
 ?>
+
 <form action="index.php?page=cart&cart=update" method="post">
 <div class="cartbox">
 
@@ -51,18 +54,32 @@ foreach ($cart_items  AS $prod_id => $prod_qty) {
 
 
 <?php
-$sql_for_cart = "SELECT * FROM products WHERE id IN (".$cart_ids;
+$i = 0;
+$sql_for_cart = "SELECT * FROM products WHERE id IN (".$cart_ids.")";
 foreach ($con->query($sql_for_cart) as $row) {
+    $id = $row['id'];
+
+    foreach($_SESSION["cart"] as $subkey => $subarray){
+        if($subarray["product_id"] == $id){
+            $loopqty = ($_SESSION["cart"][$subkey]["quantity"]);
+        }
+    }
+/* foreach ($_SESSION["cart"] as $b) {
+    if ($b["product_id"] == $id) {
+        $loopqty = $b["quantity"];
+        break;
+    }
+}  */
     if (!empty($row['img'])) {
         $imgurl = $row['img'];}
     else {
         $imgurl = "placeholder.jpg";
     }
-    $totalprice += $row['price'] * $cart_items[$row['id']];
+    $totalprice += $row['price'] * $loopqty;
     echo "
     <div class=\"cart_row\">
     <div class=\"box\">
-        <a href='index.php?page=cart&cart=delete&id=.".$row['id']."' class=\"cart_delete vertical_align_middle\">X</a>
+        <a href='index.php?page=cart&cart=delete&id=".$row['id']."' class=\"cart_delete vertical_align_middle\">X</a>
     </div>
     <div class=\"box\">
         <img class=\"cart_image\" src='images/products/".$imgurl."' alt='product placeholder'>
@@ -74,13 +91,17 @@ foreach ($con->query($sql_for_cart) as $row) {
         <span class=\"cart_price vertical_align_middle \">".$row['price']." €</span>
     </div>
     <div class=\"box\">
-    <input type='hidden' name='prod_id[]' value='".$row['id']."'>
-        <input class=\"quantity vertical_align_middle \" type=\"number\" name=\"quantity[]\" min=\"1\" max=\"9\" step=\"1\" value=\"".$cart_items[$row['id']]."\">
+    <input type='hidden' name='qty[".$i."][prod_id]' value='".$row['id']."'>
+        <input class=\"quantity vertical_align_middle \" type=\"number\" name=\"qty[".$i."][quantity]\" min=\"1\" max=\"9\" step=\"1\" value=\"".$loopqty."\">
     </div>
     <div class=\"box\">
-        <span class=\"cart_price vertical_align_middle \">".$row['price'] * $cart_items[$row['id']]." €</span>
+        <span class=\"cart_price vertical_align_middle \">".$row['price'] * $loopqty ." €</span>
     </div>
     </div>";
+
+    $i++;
+
+    echo "ID: ".$i;
 }
 ?>
 
@@ -99,6 +120,7 @@ foreach ($con->query($sql_for_cart) as $row) {
     <div class="cart_summary">
 <h2>Warenkorb Summe</h2>
 <div class="summary_table">
+    Gesamtpreis: <?php echo $totalprice; ?> €
 
 
 </div>

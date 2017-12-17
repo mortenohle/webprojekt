@@ -15,16 +15,27 @@ if (isset($_POST["product"]) && $_POST["quantity"] > 0 ) {
     if (isset($_SESSION["cart"])) {
 
 
-        $add_to_cart = array($product_id => $qty);
+        foreach($_SESSION["cart"] as $subkey => $subarray){
+            if(isset($subarray["product_id"]) == $product_id){
+                $_SESSION["cart"][$subkey]["quantity"] += $qty;
+            } else {
+                $add_to_cart = array("product_id" => $product_id, "quantity" => $qty);
+                // $_SESSION["cart"] = array_merge_recursive( (array)$_SESSION["cart"], (array)$add_to_cart );
+                array_push($_SESSION["cart"], $add_to_cart);
+            }
 
-        array_merge($_SESSION["cart"], $add_to_cart);
+        }
 
 
     } else {
 
-        $_SESSION["cart"] = array($product_id => $qty);
+        $_SESSION["cart"] = array(array("product_id" => $product_id, "quantity" => $qty));
 
     }
 
 
 }
+echo "Session Cart:";
+print_r($_SESSION["cart"]);
+echo "Add To Cart:";
+print_r($add_to_cart);

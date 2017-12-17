@@ -22,6 +22,12 @@ if (isset($_GET["cart"]))
         case "checkout":
             include "cart/checkout.php";
             break;
+        case "processorder":
+            include "cart/processorder.php";
+            break;
+        case "addtocart":
+            include "cart/addtocart.php";
+            break;
         default:
             echo "Die Seite wurde nicht gefunden";
             die();
