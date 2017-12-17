@@ -41,4 +41,8 @@ $(document).ready(function () {
         $(this).find('img').toggle();
     });
 
+    $('#sortby').on('change', function() {
+        document.getElementById("sort").submit();
+    })
+
 }); // End Document Ready

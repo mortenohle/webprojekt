@@ -7,6 +7,24 @@ $category = $_GET["category"];
 
 $prepare_link = "?page=".$page."&category=".$category;
 
+//Standard-Sortierung
+$sql_sort = "ORDER BY id ASC";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $sortby = $_POST["sortby"];
+
+    if($sortby == 1) {
+        $sql_sort = "ORDER BY id DESC";
+    } elseif ($sortby == 2) {
+        $sql_sort = "ORDER BY price ASC";
+    } elseif ($sortby == 3) {
+        $sql_sort = "ORDER BY price DESC";
+    } else {
+        $sql_sort = "ORDER BY id DESC";
+    }
+}
+
 if ($_GET["category"] == "all") {
 
     $sql_count = "SELECT COUNT(*) c FROM products, categories WHERE products.category_id = categories.id";
@@ -38,7 +56,7 @@ if ($_GET["category"] == "all") {
     }
 
     $limit = "LIMIT " .($page_number - 1) * $products_per_page . "," . $products_per_page;
-    $sql = "SELECT products.*, categories.name AS cat_name FROM products, categories WHERE products.category_id = categories.id ORDER BY id ASC $limit ";
+    $sql = "SELECT products.*, categories.name AS cat_name FROM products, categories WHERE products.category_id = categories.id $sql_sort $limit ";
 
     $product_count_echo = $total_count . " Artikel";
     $site_count_echo = "Seite ".$page_number . " von " . $last;
@@ -82,7 +100,21 @@ if ($_GET["category"] == "all") {
 
 <h1>Alle Produkte</h1>
     <div class="category-info">
-        <?php echo $site_count_echo; ?>
+        <div class="site-info">
+            <?php echo $site_count_echo; ?>
+        </div>
+        <div class="product-sort">
+            <form action="" method="post" id="sort">
+                <div class="select-wrapper">
+                <select id="sortby" name="sortby">
+                    <option value="0" <?php if($sortby == 0) {echo "selected";} ?>>Standardsortierung</option>
+                    <option value="1" <?php if($sortby == 1) {echo "selected";} ?>>Neueste zuerst</option>
+                    <option value="2" <?php if($sortby == 2) {echo "selected";} ?>>Preis aufsteigend</option>
+                    <option value="3" <?php if($sortby == 3) {echo "selected";} ?>>Preis absteigend</option>
+                </select>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="pwrapper">
         <?php
