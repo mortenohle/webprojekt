@@ -10,24 +10,23 @@
 
 include_once('db/connect.php');
 
-$test_cart = array(1 => 2);
-$cart_items = $test_cart;
+
 $total = 0;
-// $cart_items = $_SESSION["cart"];
+
+$cart_items = $_SESSION["cart"];
 
 $cart_count = count($cart_items);
 $cart_ids = "";
-foreach ($cart_items  AS $prod_id => $prod_qty) {
-
+$i = 0;
+foreach ($cart_items  AS $prod_id) {
     if ($i == $cart_count - 1) {
-        $cart_ids .= "'". $prod_id ."')";
+        $cart_ids .= $prod_id["product_id"];
     }
     else {
-
-        $cart_ids .= "'". $prod_id ."', ";
+        $cart_ids .= $prod_id["product_id"] .",";
+        $i++;
     }
 }
-// echo"
 
 ?>
 <div class="checkout">
@@ -46,10 +45,10 @@ foreach ($cart_items  AS $prod_id => $prod_qty) {
         </div>
       </p>
         <p class="form-row-left">
-    <input type='text' name='forename' placeholder="Vorname">
+    <input type='text' name='firstname' placeholder="Vorname">
         </p>
         <p class="form-row-right">
-    <input type='text' name='name' placeholder="Name">
+    <input type='text' name='lastname' placeholder="Name">
         </p>
         <p class="form-row-wide">
     <input type='text' name='street' placeholder="Straße und Hausnummer">
@@ -92,14 +91,19 @@ foreach ($cart_items  AS $prod_id => $prod_qty) {
             <th>Gesamtsumme</th>
         </tr>
         <?php
-        $sql_for_cart = "SELECT * FROM products WHERE id IN (".$cart_ids;
+        $sql_for_cart = "SELECT * FROM products WHERE id IN (".$cart_ids.")";
         foreach ($con->query($sql_for_cart) as $row) {
+            $id = $row['id'];
+            foreach($_SESSION["cart"] as $subkey => $subarray){
+                if($subarray["product_id"] == $id){
+                    $loopqty = ($_SESSION["cart"][$subkey]["quantity"]);
+                }
+            }
             if (!empty($row['img'])) {
                 $imgurl = $row['img'];}
             else {
                 $imgurl = "placeholder.jpg";
             }
-            $totalprice += $row['price'] * $cart_items[$row['id']];
             echo "
     
  <tr>
@@ -108,16 +112,16 @@ foreach ($cart_items  AS $prod_id => $prod_qty) {
             <img class='cart_image' src='images/products/".$imgurl."' alt='product placeholder'>
         </div>
         <div class='checkout_pright'>
-           <span class=\"cart_desc vertical_align_middle \">".$row['name']."<br>Menge: ".$cart_items[$row['id']]."</span>
+           <span class=\"cart_desc vertical_align_middle \">".$row['name']."<br>Menge: ".$loopqty."</span>
         </div>
 
 
     </td>
-    <td><span class=\"cart_price vertical_align_middle \">".$row['price'] * $cart_items[$row['id']]." €</span></td>
+    <td><span class=\"cart_price vertical_align_middle \">".$row['price'] * $loopqty." €</span></td>
   </tr>
   ";
             //Gesamtsumme berechnen
-            $total += $row['price'] * $cart_items[$row['id']];
+            $total += $row['price'] * $loopqty;
 
         } ?>
         <tr>
@@ -135,7 +139,7 @@ foreach ($cart_items  AS $prod_id => $prod_qty) {
     </table>
 
     </div>
-    <input type='submit' value='Kasse' name='checkout'>
+    <input type='submit' value='kostenpflichtig Bestellen' name='checkout'>
 
 </form>
 

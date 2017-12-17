@@ -24,7 +24,7 @@ else {
 
             <div class="prod_addtocart">
 
-                <form action="index.php?page=cart" method="post">
+                <form action="index.php?page=cart&cart=addtocart" method="post">
                     <input class="quantity" type="number" name="quantity" min="1" max="9" step="1" value="1">
                     <input type="hidden" name="product" value="<?php echo $result["id"]; ?>">
                     <input class="addtocart_button" type="submit" value="In den Einkaufswagen">
