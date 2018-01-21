@@ -15,8 +15,9 @@ if (isset($_POST["product"]) && $_POST["quantity"] > 0 ) {
     if (isset($_SESSION["cart"])) {
 
 
+
         foreach($_SESSION["cart"] as $subkey => $subarray){
-            if(isset($subarray["product_id"]) == $product_id){
+            if($subarray["product_id"] == $product_id){
                 $_SESSION["cart"][$subkey]["quantity"] += $qty;
             } else {
                 $add_to_cart = array("product_id" => $product_id, "quantity" => $qty);
@@ -37,5 +38,3 @@ if (isset($_POST["product"]) && $_POST["quantity"] > 0 ) {
 }
 echo "Session Cart:";
 print_r($_SESSION["cart"]);
-echo "Add To Cart:";
-print_r($add_to_cart);

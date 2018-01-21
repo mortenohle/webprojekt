@@ -3,13 +3,18 @@ $id = $_GET['id'];
 include_once('db/connect.php');
 
 $sql = "SELECT * FROM products WHERE id = ".$id;
-$prod =$con->query($sql);
+$prod = $con->query($sql);
 $result = $prod->fetch();
 //placeholder abfrage
 if (!empty($result['img'])) {
     $imgurl = $result['img'];}
 else {
     $imgurl = "placeholder.jpg";
+}
+if (isset($_POST["product"])) {
+    include "cart/addtocart.php";
+
+    echo "<span>Das Produkt wurde zum Warenkorb hinzugefügt. <a href='index.php?page=cart&cart=show'>Zum Warenkorb</a> </span>";
 }
 ?>
 <div class="col2">
@@ -24,7 +29,7 @@ else {
 
             <div class="prod_addtocart">
 
-                <form action="index.php?page=cart&cart=addtocart" method="post">
+                <form action="" method="post">
                     <input class="quantity" type="number" name="quantity" min="1" max="9" step="1" value="1">
                     <input type="hidden" name="product" value="<?php echo $result["id"]; ?>">
                     <input class="addtocart_button" type="submit" value="In den Einkaufswagen">

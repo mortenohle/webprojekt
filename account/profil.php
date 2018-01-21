@@ -1,8 +1,12 @@
 <h1>Mein Profil</h1>
 
-<?php if(isset($_SESSION["username"])) { ?>
+<?php if(isset($_SESSION["username"])) {
+
+    ?>
 
     <p>Inhalt folgt!</p>
+
+
 
 <?php } else { ?>
 

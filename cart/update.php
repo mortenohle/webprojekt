@@ -20,21 +20,25 @@ if($_POST["update"]) {
 
    $qty = $_POST["qty"];
 
-   print_r($qty);
+    print_r($qty);
+
+
 
    /* foreach($qty as $subkey => $subarray){
         if($subarray["prod_id"] == $prod_id){
             $_SESSION["cart"][$subkey]["quantity"] = $new_qty;
         }
-    }  */
+    }
     $i = 0;
 
     foreach($_SESSION["cart"] as $subkey => $subarray){
-        if($subarray["product_id"] == $qty[$i]["prod_id"]){
-        $_SESSION["cart"][$subkey]["quantity"] = $qty[$i]["quantity"];
+        if($subarray["product_id"] == $qty[]["prod_id"]){
+        $_SESSION["cart"][$subkey]["quantity"] = $qty[]["quantity"];
         }
         $i++;
     }
+    print_r($_SESSION["cart"]); */
+
 }
 if($_POST["coupon"]) {
 
@@ -47,3 +51,4 @@ if($_POST["checkout"]) {
     
 
 }
+

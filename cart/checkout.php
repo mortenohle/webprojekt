@@ -28,6 +28,13 @@ foreach ($cart_items  AS $prod_id) {
     }
 }
 
+if (isset($_SESSION["userid"])) {
+    $statement = $con->prepare('SELECT * FROM user WHERE id = :userid');
+    $statement->bindParam(':userid', $_SESSION["userid"]);
+    $statement->execute();
+    $result = $statement->fetch();
+}
+
 ?>
 <div class="checkout">
 <h1>Kasse</h1>
@@ -45,25 +52,25 @@ foreach ($cart_items  AS $prod_id) {
         </div>
       </p>
         <p class="form-row-left">
-    <input type='text' name='firstname' placeholder="Vorname">
+    <input type='text' name='firstname' placeholder="Vorname" value="<?php echo $result["firstname"] ?>" required>
         </p>
         <p class="form-row-right">
-    <input type='text' name='lastname' placeholder="Name">
+    <input type='text' name='lastname' placeholder="Name" value="<?php echo $result["lastname"] ?>" required>
         </p>
         <p class="form-row-wide">
-    <input type='text' name='street' placeholder="Straße und Hausnummer">
+    <input type='text' name='street' placeholder="Straße und Hausnummer" value="<?php echo $result["address"] ?>" required>
         </p>
         <p class="form-row-left">
-    <input type='text' name='city' placeholder="Ort">
+    <input type='text' name='city' placeholder="Ort" value="<?php echo $result["city"] ?>" required>
         </p>
         <p class="form-row-right">
-    <input type='text' name='postcode' placeholder="PLZ">
+    <input type='text' name='postcode' placeholder="PLZ" value="<?php echo $result["postcode"] ?>" required>
         </p>
         <p class="form-row-left">
-    <input type='tel' name='phone' placeholder="Telefon">
+    <input type='tel' name='phone' placeholder="Telefon" required>
         </p>
         <p class="form-row-right">
-    <input type='email' name='email' placeholder="Email">
+    <input type='email' name='email' placeholder="Email" value="<?php echo $result["email"] ?>" <?php if (isset($result["email"])) {echo "readonly";}?> required>
         </p>
 
         <div style="clear: both"></div>

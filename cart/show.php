@@ -5,6 +5,12 @@
  * Date: 06.11.17
  * Time: 12:02
  */
+
+
+if (empty($_SESSION["cart"]) || !isset($_SESSION["cart"])) {
+    echo '<div class="error_dialog"> <span class="error_message">Dein Warenkorb ist leer.</span><br>
+<a class="btn-link" href="index.php">Zurück zum Shop</a></div>';
+} else {
 include_once('db/connect.php');
 
 /* $test_cart = array(1 => 2);
@@ -91,8 +97,8 @@ foreach ($con->query($sql_for_cart) as $row) {
         <span class=\"cart_price vertical_align_middle \">".$row['price']." €</span>
     </div>
     <div class=\"box\">
-    <input type='hidden' name='qty[".$i."][prod_id]' value='".$row['id']."'>
-        <input class=\"quantity vertical_align_middle \" type=\"number\" name=\"qty[".$i."][quantity]\" min=\"1\" max=\"9\" step=\"1\" value=\"".$loopqty."\">
+    <input type='hidden' name='qty[prod_id]' value='".$row['id']."'>
+        <input class=\"quantity vertical_align_middle \" type=\"number\" name=\"qty[quantity]\" min=\"1\" max=\"9\" step=\"1\" value=\"".$loopqty."\">
     </div>
     <div class=\"box\">
         <span class=\"cart_price vertical_align_middle \">".$row['price'] * $loopqty ." €</span>
@@ -100,8 +106,6 @@ foreach ($con->query($sql_for_cart) as $row) {
     </div>";
 
     $i++;
-
-    echo "ID: ".$i;
 }
 ?>
 
@@ -128,3 +132,5 @@ foreach ($con->query($sql_for_cart) as $row) {
     </div>
 
 </form>
+
+<?php }?>

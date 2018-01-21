@@ -63,7 +63,15 @@
                         <li><a href='index.php?page=account&action=registrieren'>Registrieren</a></li>
                     <?php } ?>
 
-                    <li class="warenkorb"><img src="images/warenkorb.svg" alt="Warebkorb"><span class="li-cart-mobile">Warenkorb</span></li>
+                    <li class="warenkorb"><a href="index.php?page=cart&cart=show"><img src="images/warenkorb.svg" alt="Warenkorb"><span class="li-cart-mobile">Warenkorb</span></a>
+                        <?php if (!empty($_SESSION["cart"])) { ?>
+                        <ul class="transition">
+                            <div class="user-dropdown-wrap">
+
+                            </div>
+                        </ul>
+                    </li>
+                    <?php } ?>
                     <li class="toggle-search"><img src="images/suche.svg" alt="Suche" class="search-icon"></li>
                 </ul>
             </div>
