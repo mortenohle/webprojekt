@@ -95,7 +95,7 @@ if ($_GET["action"] == "edit") {
 
                     <div class="col">
                         <p>Klicke auf den untenstehenden Button, um ein neues Produktbild auszuwählen.</p>
-                        <label for="file" class="file-label">Produktbild wählen</label>
+                        <label for="file" class="file-label">Neues Produktbild wählen</label>
                         <input type="file" id="file" name="product_image" onchange="readURL(this);"/>
                     </div>
                 </div>
@@ -111,48 +111,105 @@ if ($_GET["action"] == "edit") {
     <?php
     } elseif ($_GET["action"] == "editsuccess") {
 
-    try {
+    $valid = true;
+    if (empty($_POST["product_name"])) {
+        $err_name = "Bitte gib einen Produktnamen an!<br>";
+        $valid = false;
+    }
+    if ($_POST["product_category"] == "choose_cat") {
+        $err_cat = "Bitte wähle eine Kategorie!<br>";
+        $valid = false;
+    }
+    if (empty($_POST["product_price"])) {
+        $err_price = "Bitte gib einen Preis für das Produkt an!<br>";
+        $valid = false;
+    }
+    if (empty($_POST["product_artnr"])) {
+        $err_artnr = "Bitte gib eine Artikelnummer an!<br>";
+        $valid = false;
+    }
 
-        move_uploaded_file($_FILES['product_image']['tmp_name'], '../images/products/'.$_FILES['product_image']['name']);
+    if ($valid) {
 
-        include_once('../db/connect.php');
+        try {
 
-        $stmt = $con->prepare("UPDATE products SET `name` = :name, `desc` = :desc, category_id = :category_id, price = :price, artnr = :artnr, img = :img WHERE id = :id ");
-        $stmt->bindParam(':name', $product_name);
-        $stmt->bindParam(':desc', $product_description);
-        $stmt->bindParam(':category_id', $product_category);
-        $stmt->bindParam(':price', $product_price);
-        $stmt->bindParam(':artnr', $product_artnr);
-        $stmt->bindParam(':img', $product_img_url);
-        $stmt->bindParam(':id', $product_id);
+            //IMG Upload Ordner, Dateiname & Dateityp
+            $product_img_folder = '../images/products/';
+            $product_img_name = pathinfo($_FILES['product_image']['name'], PATHINFO_FILENAME);
+            $product_img_filetype = strtolower(pathinfo($_FILES['product_image']['name'], PATHINFO_EXTENSION));
 
-        $product_name = $_POST['product_name'];
-        $product_description = $_POST['product_desc'];
-        $product_category = $_POST['product_category'];
-        $product_price = $_POST['product_price'];
-        $product_artnr = $_POST['product_artnr'];
-        $product_id = $_POST['product_id'];
-        $product_img = $_FILES['product_image']['name'];
+            //Überprüfung des IMG-Dateityps
+            $allowed_filetype = array('jpg', 'jpeg', 'png', 'gif');
+            if (!in_array($product_img_filetype, $allowed_filetype)) {
+                die("Ungültiger Dateityp. Bitte lade nur nur jpg, jpeg, png und gif-Dateien hoch");
+            }
 
-        $current_img = $_POST['current_img'];
+            $upload_path = $product_img_folder . $product_img_name . '.' . $product_img_filetype;
 
-        if ($product_img == "") {
-            $product_img_url = $current_img;
-        } else {
-            $product_img_url = $product_img;
-        }
+            if (file_exists($upload_path)) {
+                $id = 1;
+                do {
+                    $upload_path = $product_img_folder . $product_img_name . '_' . $id . '.' . $product_img_filetype;
+                    $id++;
+                } while (file_exists($upload_path));
+            }
 
-        $stmt->execute();
+            move_uploaded_file($_FILES['product_image']['tmp_name'], $upload_path);
 
-        echo " Die Änderungen wurden erfolgreich übernommen";
+            include_once('../db/connect.php');
 
-        }
-        catch(PDOException $e)
-        {
+            $stmt = $con->prepare("UPDATE products SET `name` = :name, `desc` = :desc, category_id = :category_id, price = :price, artnr = :artnr, img = :img WHERE id = :id ");
+            $stmt->bindParam(':name', $product_name);
+            $stmt->bindParam(':desc', $product_description);
+            $stmt->bindParam(':category_id', $product_category);
+            $stmt->bindParam(':price', $product_price);
+            $stmt->bindParam(':artnr', $product_artnr);
+            $stmt->bindParam(':img', $product_img_url);
+            $stmt->bindParam(':id', $product_id);
+
+            $product_name = $_POST['product_name'];
+            $product_description = $_POST['product_desc'];
+            $product_category = $_POST['product_category'];
+            $product_price = $_POST['product_price'];
+            $product_artnr = $_POST['product_artnr'];
+            $product_id = $_POST['product_id'];
+            $product_img = $_FILES['product_image']['name'];
+
+            $current_img = $_POST['current_img'];
+
+            if ($product_img == "") {
+                $product_img_url = $current_img;
+            } else {
+                $product_img_url = $product_img;
+            }
+
+            $stmt->execute();
+
+            echo "
+            <div class='row-full-width'>
+            Die Änderungen wurden erfolgreich übernommen!
+            </div>
+            <div class='row-full-width'>
+                <a href='index.php?page=product&action=show' class='btn-link'>Zu den Produkten</a>
+            </div>
+            ";
+
+        } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
         $con = null;
-
+    } else {
+        echo "
+            <div class='row-full-width'>
+            <h2 class='divider'>Es ist ein Fehler aufgetreten</h2>
+            ".$err_name. $err_cat. $err_price. $err_artnr."
+            </div>
+            <div class='row-full-width'>
+                <button class='btn-link' onclick='window.history.back()'>Zurück</button>
+            </div>
+            ";
     }
+
+    } // Ende editsuccess
 
     ?>

@@ -13,6 +13,12 @@ if (isset($_GET["page"]))
         case "myprofile":
             include "account/profil.php";
             break;
+        case "registrieren":
+            include "account/registrieren.php";
+            break;
+        case "speichern":
+            include "account/speichern.php";
+            break;
         default:
             echo "Die Seite wurde nicht gefunden";
             die();

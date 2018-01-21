@@ -86,9 +86,49 @@ if ($_GET["action"] == "new") {
     <?php
         } elseif ($_GET["action"] == "newsuccess") {
 
+    $valid = true;
+    if (empty($_POST["product_name"])) {
+        $err_name = "Bitte gib einen Produktnamen an!<br>";
+        $valid = false;
+    }
+    if ($_POST["product_category"] == "choose_cat") {
+        $err_cat = "Bitte wähle eine Kategorie!<br>";
+        $valid = false;
+    }
+    if (empty($_POST["product_price"])) {
+        $err_price = "Bitte gib einen Preis für das Produkt an!<br>";
+        $valid = false;
+    }
+    if (empty($_POST["product_artnr"])) {
+        $err_artnr = "Bitte gib eine Artikelnummer an!<br>";
+        $valid = false;
+    }
+
+    if ($valid) {
         try {
 
-            move_uploaded_file($_FILES['product_image']['tmp_name'], '../images/products/' . $_FILES['product_image']['name']);
+            //IMG Upload Ordner, Dateiname & Dateityp
+            $product_img_folder = '../images/products/';
+            $product_img_name = pathinfo($_FILES['product_image']['name'], PATHINFO_FILENAME);
+            $product_img_filetype = strtolower(pathinfo($_FILES['product_image']['name'], PATHINFO_EXTENSION));
+
+            //Überprüfung des IMG-Dateityps
+            $allowed_filetype = array('jpg', 'jpeg', 'png', 'gif');
+            if (!in_array($product_img_filetype, $allowed_filetype)) {
+                die("Ungültiger Dateityp. Bitte lade nur nur jpg, jpeg, png oder gif-Dateien hoch");
+            }
+
+            $upload_path = $product_img_folder . $product_img_name . '.' . $product_img_filetype;
+
+            if (file_exists($upload_path)) {
+                $id = 1;
+                do {
+                    $upload_path = $product_img_folder . $product_img_name . '_' . $id . '.' . $product_img_filetype;
+                    $id++;
+                } while (file_exists($upload_path));
+            }
+
+            move_uploaded_file($_FILES['product_image']['tmp_name'], $upload_path);
 
             include_once('../db/connect.php');
 
@@ -123,14 +163,26 @@ if ($_GET["action"] == "new") {
             <div class='row-full-width'>
             Das Produkt wurde erfolgreich hinzugefügt!
             </div>
+            <div class='row-full-width'>
+                <a href='index.php?page=product&action=show' class='btn-link'>Zu den Produkten</a>
+            </div>
             ";
 
-        }
-        catch(PDOException $e)
-        {
+        } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
         $con = null;
 
-        }
+    } else {
+        echo "
+            <div class='row-full-width'>
+            <h2 class='divider'>Es ist ein Fehler aufgetreten</h2>
+            ".$err_name. $err_cat. $err_price. $err_artnr."
+            </div>
+            <div class='row-full-width'>
+                <button class='btn-link' onclick='window.history.back()'>Zurück</button>
+            </div>
+            ";
+    }
+}// Ende newsuccess
     ?>

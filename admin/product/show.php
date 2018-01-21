@@ -13,7 +13,7 @@
             <?php
 
                 // Anzahl aller Produkte
-                $sql_count_all = "SELECT COUNT(*) c FROM products";
+                $sql_count_all = "SELECT COUNT(*) c FROM products, categories WHERE products.category_id = categories.id";
                 $result = $con->query($sql_count_all);
                 $count = $result->fetch(PDO::FETCH_ASSOC);
             ?>
@@ -22,7 +22,7 @@
 
             <?php
                 // SQL Abfrage der Kategorien
-                $sql_cat = "SELECT * FROM categories";
+                $sql_cat = "SELECT products.category_id, categories.id, categories.name FROM categories, products WHERE categories.id = products.category_id GROUP BY categories.name";
 
                 foreach ($con->query($sql_cat) as $row_cat) {
 
@@ -64,9 +64,9 @@
 <?php
 
 if ($categoryid == "") {
-    $sql = "SELECT products.*, categories.name AS cat_name FROM products JOIN categories ON products.category_id = categories.id ORDER BY id ASC";
+    $sql = "SELECT products.*, categories.name AS cat_name FROM products, categories WHERE products.category_id = categories.id ORDER BY id ASC";
 } else {
-    $sql = "SELECT products.*, categories.name AS cat_name FROM products JOIN categories ON products.category_id = categories.id WHERE products.category_id = ".$categoryid." ORDER BY id ASC";
+    $sql = "SELECT products.*, categories.name AS cat_name FROM products, categories WHERE products.category_id = categories.id AND products.category_id = ".$categoryid." ORDER BY id ASC";
 }
 
 foreach ($con->query($sql) as $row) {

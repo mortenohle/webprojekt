@@ -60,6 +60,7 @@
                        </li>
                     <?php } else { ?>
                         <li><a href='index.php?page=account&action=login'>Einloggen</a></li>
+                        <li><a href='index.php?page=account&action=registrieren'>Registrieren</a></li>
                     <?php } ?>
 
                     <li class="warenkorb"><img src="images/warenkorb.svg" alt="Warebkorb"><span class="li-cart-mobile">Warenkorb</span></li>

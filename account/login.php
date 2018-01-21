@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':e_mail', $e_mail);
         $stmt->execute(); // Abfrage ausführen
         $row = $stmt->fetch(PDO::FETCH_ASSOC); // Ergebnis der Abfrage in Array speichern
-
         $hashAusDatenbank = $row['pw']; // Hash aus der Datenbank versteckt sich in dem Wert ['passwort']
 
         // Check Nr.1: Ist das Passwort richtig eingegeben
