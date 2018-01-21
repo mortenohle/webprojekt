@@ -90,7 +90,7 @@ echo "
 <div class='product-col actions'>
 <a><a href='../index.php?page=product&product=show&id=".$row['id']."' target='_blank'><i class='fa fa-eye' aria-hidden='true'></i></a></span>
 <span><a href='index.php?page=product&action=edit&id=".$row['id']."'><i class='fa fa-pencil' aria-hidden='true'></i></a></span>
-<span><i class='fa fa-trash' aria-hidden='true'></i></span>
+<span><a href='index.php?page=product&action=delete&id=".$row['id']."'><i class='fa fa-trash' aria-hidden='true'></i></a></span>
 </div>
 ";
 echo "</div>";

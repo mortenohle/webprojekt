@@ -112,10 +112,12 @@ if ($_GET["action"] == "new") {
             $product_img_name = pathinfo($_FILES['product_image']['name'], PATHINFO_FILENAME);
             $product_img_filetype = strtolower(pathinfo($_FILES['product_image']['name'], PATHINFO_EXTENSION));
 
-            //Überprüfung des IMG-Dateityps
-            $allowed_filetype = array('jpg', 'jpeg', 'png', 'gif');
-            if (!in_array($product_img_filetype, $allowed_filetype)) {
-                die("Ungültiger Dateityp. Bitte lade nur nur jpg, jpeg, png oder gif-Dateien hoch");
+            if (!empty($_POST["product_image"])) {
+                //Überprüfung des IMG-Dateityps
+                $allowed_filetype = array('jpg', 'jpeg', 'png', 'gif');
+                if (!in_array($product_img_filetype, $allowed_filetype)) {
+                    die("Ungültiger Dateityp. Bitte lade nur nur jpg, jpeg, png oder gif-Dateien hoch");
+                }
             }
 
             $upload_path = $product_img_folder . $product_img_name . '.' . $product_img_filetype;

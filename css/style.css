@@ -129,6 +129,7 @@ a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {backg
     grid-column-gap: 40px;}
 .box {
     grid-column: auto / span 1;
+    margin-bottom: 26px;
 }
 .imagebox {
     position: relative;
@@ -173,7 +174,10 @@ a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {backg
 .pprice{
     font-size: 16px;
     text-align: center;
-    color: #d2b598;}
+    color: #d2b598;
+    display: block;
+    padding-top: 5px;
+}
 
 /** Single Product **/
 

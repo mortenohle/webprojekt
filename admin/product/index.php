@@ -19,6 +19,12 @@ if (isset($_GET["action"]))
         case "newsuccess":
             include "product/new.php";
             break;
+        case "delete":
+            include "product/delete.php";
+            break;
+        case "deletesuccess":
+            include "product/delete.php";
+            break;
         default:
             echo "Die Seite wurde nicht gefunden";
             die();
