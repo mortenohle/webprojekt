@@ -55,3 +55,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="registrieren.php">Jetzt Registrieren</a><br>
     </form>
 </div>
+
+
