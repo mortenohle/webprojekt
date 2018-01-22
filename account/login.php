@@ -41,9 +41,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<form action="" method="post">
-    <input type="email" size="40" maxlength="150" name="e_mail" placeholder="E-Mail-Adresse eingeben" <br><br>
-    <input type="password" size="40" maxlength="150" name="passwort" placeholder="Passwort eingeben"<br><br>
-    <input type="submit" value="anmelden">
-    <p>Passwort vergessen?</p>
-</form>
+<div class="loginbox">
+    <img src="bilder/avatar.png" class="avatar">
+    <h1>Login</h1>
+    <form action="logincheck.php" method="post">
+        <p>E-Mail-Adresse</p>
+        <input type="email" size="40" maxlength="150" name="e_mail" placeholder=""<br><br>
+        <p>Passwort</p>
+        <input type="password" size="40" maxlength="150" name="passwort" placeholder=""<br><br>
+        <input type="submit" value="Login"
+        <br>
+        <a href="passwortvergessen.php">Passwort vergessen?</a><br>
+        <a href="registrieren.php">Jetzt Registrieren</a><br>
+    </form>
+</div>
