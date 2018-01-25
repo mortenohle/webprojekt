@@ -41,6 +41,7 @@ nav ul li:hover > ul {display: block;}
 .nav-right ul li:last-child {margin-right: 0;}
 .nav-right ul li {color: #707070;}
 .nav-right ul li.warenkorb {margin-right: 10px;}
+li.warenkorb ul {display: none;}
 .nav-right ul li img {width: 22px; height: auto; position: relative; bottom: -6px;}
 .search-icon {width: 20px !important;}
 .li-cart-mobile {display: none;}
@@ -310,6 +311,7 @@ a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {backg
     color: #666666;
     display: block;
     margin: 20px 0;
+    line-height: 26px;
 }
 .prod_categories {
     border-top: 1px solid #eee;
@@ -526,6 +528,9 @@ fieldset label {
     .logo-container {display: none;}
     .nav-right ul li {display: block; width: 100%; padding-bottom: 16px; margin-bottom: 16px; border-bottom: 1px solid #F7F7F7;}
     .nav-right ul li.warenkorb {border-bottom: none;}
+    .nav-right ul li a {display: block;}
+    nav ul li a {display: block;}
+    nav ul li:hover > ul {display: none;}
     .nav-wrap {background: #FFF; position: fixed; top: 60px; left: 0; right: 0; height: 100vh; display: none; border-top: 1px solid #EEE; padding: 40px 20px;}
     header.shrinked nav > ul > li {height: auto; line-height: normal;}
     .logo-mobile {display: inline-block; width: 70%; height: 60px; line-height: 60px; text-transform: uppercase; color: #333333; font-weight: bold; font-size: 26px; letter-spacing: 8px;}
@@ -542,6 +547,11 @@ fieldset label {
     .i-search-mobile {display: inline-block;}
     button[type="submit"] img {width: 18px;}
     .pwrapper {grid-template-columns: 1fr 1fr; grid-column-gap: 20px;}
+}
+
+@media screen and (max-width: 799px) {
+    .col2.single-product-page {grid-template-columns: 1fr; grid-column-gap: 0; max-width: 500px; margin-left: auto; margin-right: auto;}
+    .prod_price {margin: 0;}
 }
 
 @media screen and (max-width: 499px) {

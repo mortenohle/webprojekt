@@ -17,7 +17,7 @@ if (isset($_POST["product"])) {
     echo "<span>Das Produkt wurde zum Warenkorb hinzugefügt. <a href='index.php?page=cart&cart=show'>Zum Warenkorb</a> </span>";
 }
 ?>
-<div class="col2">
+<div class="col2 single-product-page">
     <div class="box">
       <img class="prod_image" src="images/products/<?php echo $imgurl; ?>">
     </div>

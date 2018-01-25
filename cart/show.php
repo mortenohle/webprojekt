@@ -128,6 +128,7 @@ foreach ($con->query($sql_for_cart) as $row) {
 
 
 </div>
+        <input type="hidden" name="prod_id" value="<?php echo $row['id']; ?>">
         <input class="cart_update" type="submit" value="Kasse" name="checkout">
     </div>
 
