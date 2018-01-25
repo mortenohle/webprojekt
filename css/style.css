@@ -219,6 +219,58 @@ a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {backg
     font-weight: lighter;
 }
 
+/**Registrierung**/
+.registrierungsbox{
+    width: 680px;
+    height: auto;
+    background-color: white;
+    border: 2px solid grey;
+    font-family: Lato;
+    color: black;
+    font-size: 14px;
+    font-family: Lato;
+    padding: 22px;
+
+}
+
+.registrierungsbox h1{
+    font-family: Lato;
+    font-weight: lighter;
+    text-align: left;
+    display: block;
+    color: #d2b598;
+}
+
+.registrierungsbox.p{
+    font-family:Lato;
+}
+
+.registrierungsbox input{
+    width:100%;
+    margin-bottom: 15px;
+    border: 1px solid lightgrey;
+    box-sizing: border-box;
+}
+
+
+.registrierungsbox input[type="text"], input[type="email"],input[type="password"], input[type="date"] {
+    height: 30px;
+    font-size: 14px;
+    font-family: Lato;
+    font-weight: lighter;
+}
+.registrierungsbox input[type="submit"]{
+    width: 100%;
+    font-size: 14px;
+    font-family: Lato;
+    font-weight: lighter;
+    color: #d2b598;
+    border: 1px solid #d2b598;
+    background-color: white;
+}
+.registrierungsbox h4{
+    font-weight: bold;
+}
 /** Product Grid Layout **/
 .pwrapper {
     display: grid;
