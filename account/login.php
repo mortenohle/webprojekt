@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <div class="loginbox">
-    <img src="bilder/avatar.png" class="avatar">
+    <img src="images/avatar.png" class="avatar">
     <h1>Login</h1>
     <form action="logincheck.php" method="post">
         <p>E-Mail-Adresse</p>
