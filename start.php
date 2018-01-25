@@ -1,43 +1,57 @@
 <?php
-include_once('db/connect.php');
+include_once('../db/connect.php');
+$orderId = $_GET['orderId'];
+if (!isset($orderId)) $orderId = 1;
+$sql_products = "SELECT orders.*, products.*, orders_products.quantity, categories.name as cat_name
+FROM orders, products, orders_products, categories
+WHERE orders_products.idorder = orders.id
+AND orders_products.idproduct = products.id
+AND products.category_id = categories.id
+AND orders.id = $orderId";
+
+$query = $con->query($sql_products);
 ?>
-<div class='startintro'>
-<h1>Neues aus unserem Shop</h1>
-    <div class="category-filter" style="display: none;">
+<h1>Dashboard</h1>
+
+<div class="row-2-col">
+    <div class="col">
+        <h2>Aktuelle Bestellugen</h2>
         <ul>
-            <li><a href="#">Alle anzeigen</a></li>
+            <?php  $order_query = $con->query("SELECT * FROM orders WHERE id = $orderId");
+            $order = $order_query->fetchObject();?>
+            <li><?php echo "Order Id: $orderId" ?></li>
+            <li><?php echo "Order Address: ".$order->address ?></li>
+            <li><?php echo "Order User id: ". $order->user_id ?></li>
+        </ul>
+
+    </div>
+    <div class="col">
+        <h2>Neu im Sortiment</h2>
+        <div class="dashboard-product-container">
+
             <?php
-            $sql_cat = "SELECT categories.*, products.name AS p_name FROM categories INNER JOIN products ON categories.id = products.category_id ORDER BY id ASC";
-            foreach ($con->query($sql_cat) as $row_cat) {
-                echo "<li> ".$row_cat["name"]."</li>";
+            foreach ($query as $row_product) {
+
+                // Abfrage Produktbild
+                if ($row_product['img'] == "") {
+                    $imgurl = "placeholder.jpg";
+                } else {
+                    $imgurl = $row_product['img'];
+                }
+
+                echo "<div class='row'>";
+                echo "
+                <div class='d-col product-image'>
+                    <div class='img-thumb' style='background-image: url(../images/products/".$imgurl.");'></div>
+                </div>
+                <div class='d-col product-info'><span class='product-heading'>".$row_product['name']." - ". $row_product['quantity'] ."</span><span class='product-category'>Kategorie: ".$row_product['cat_name']."</span></div>
+                <div class='d-col product-price'>".$row_product['price']." €</div>
+                ";
+                echo "</div>";
             }
             ?>
-        </ul>
+
+        </div>
+        <a class="btn-link" href="index.php?page=product&action=show">Alle Produkte anzeigen</a>
     </div>
-</div>
-
-<div class="pwrapper">
-
-<?php
-
-$sql = "SELECT * FROM products ORDER BY id ASC";
-
-foreach ($con->query($sql) as $row) {
-    //placeholder abfrage
-    if (!empty($row['img'])) {
-        $imgurl = $row['img'];}
-    else {
-        $imgurl = "placeholder.jpg";
-    }
-
-    echo "<div class='box'>";
-    echo "<div class='imagebox'><img class='pplaceholder' src='images/products/".$imgurl."' alt='product placeholder'>
-<div class='imageoverlay'>
-<div class='overlaycontent'><a href='index.php?page=product&product=show&id=".$row['id']."'>Details</a></div>
-
-</div></div>";
-    echo "<div class='pdesc'><a class='ptitle' href='index.php?page=product&product=show&id=".$row['id']."'>".$row['name']."</a><br><span class='pprice'>".$row['price']." €</span></div>";
-    echo "</div>";
-}
-?>
 </div>
