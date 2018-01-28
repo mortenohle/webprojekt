@@ -78,7 +78,17 @@ li.user-profile a:before {content: "\f2c0"; font-family: FontAwesome; padding-ri
 .cart_widget_footer {width: 100%; display: block; padding: 10px;}
 .cart_widget_link {display: inline;  }
 .btn-small {padding: 7px 12px !important; font-size: 11px !important;}
-
+.warenkorb-bubble {
+    position: absolute;
+    top: -6px;
+    right: -4px;
+    padding: 3px 6px 3px 6px;
+    background-color: #d2b598;
+    color: white;
+    font-size: 0.65em;
+    border-radius: 50%;
+    z-index: 99;
+}
     /** Shrinked Header **/
 header.shrinked {height: 60px;}
 header.shrinked nav > ul > li {height: 60px; line-height: 60px;}
@@ -584,6 +594,16 @@ fieldset label {
 .cart_summary {
     margin: 30px 0;
 }
+.tocheckout {
+    display: block;
+    margin-top: 30px;
+    float: right;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+.clearfloat{
+    clear: both;
+}
 
 /** Responsive Layout **/
 @media screen and (max-width: 1320px) {
@@ -683,7 +703,7 @@ fieldset label {
 td {padding: 20px 0;}
 .checkout_summary table {max-width: 800px; border: 1px solid #eee;}
 .checkout_summary tr {padding: 10px 0;}
-.checkout_summary th, .checkout_summary td {padding: 15px; border-bottom: 1px solid #eee;}
+.checkout_summary th, .checkout_summary td {padding: 15px; border-bottom: 1px solid #eee; text-align: left;}
 .checkout_summary tr:last-child>td {
     border: none;
 }

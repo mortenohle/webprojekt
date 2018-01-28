@@ -5,16 +5,20 @@
  * Date: 06.11.17
  * Time: 12:02
  */
+if($_POST["update"]) {
+    $newcart = $_POST["qty"];
+    $cart->updateall($newcart);
+}
+if($_POST["coupon"]) {
 
+    echo "Aktuell ist die Gutschein Funktion inaktiv.";
+
+}
 
 if (empty($_SESSION["cart"]) || !isset($_SESSION["cart"])) {
     echo '<div class="error_dialog"> <span class="error_message">Dein Warenkorb ist leer.</span><br>
 <a class="btn-link" href="index.php">Zurück zum Shop</a></div>';
 } else {
-include_once('db/connect.php');
-
-/* $test_cart = array(1 => 2);
-$cart_items = $test_cart; */
 $cart_items = $_SESSION["cart"];
 
 $cart_count = count($cart_items);
@@ -29,11 +33,8 @@ foreach ($cart_items  AS $prod_id) {
         $i++;
     }
 }
-// echo $cart_ids;
-print_r($_SESSION["cart"]);
 ?>
-
-<form action="index.php?page=cart&cart=update" method="post">
+<form action="index.php?page=cart&cart=show" method="post">
 <div class="cartbox">
 
     <div class="cart_header">
@@ -57,8 +58,6 @@ print_r($_SESSION["cart"]);
         <span class="cartlabel">Gesamt</span>
     </div>
     </div>
-
-
 <?php
 $i = 0;
 $sql_for_cart = "SELECT * FROM products WHERE id IN (".$cart_ids.")";
@@ -70,12 +69,6 @@ foreach ($con->query($sql_for_cart) as $row) {
             $loopqty = ($_SESSION["cart"][$subkey]["quantity"]);
         }
     }
-/* foreach ($_SESSION["cart"] as $b) {
-    if ($b["product_id"] == $id) {
-        $loopqty = $b["quantity"];
-        break;
-    }
-}  */
     if (!empty($row['img'])) {
         $imgurl = $row['img'];}
     else {
@@ -118,19 +111,16 @@ foreach ($con->query($sql_for_cart) as $row) {
         <input class="cart_update" type="submit" value="Aktualisieren" name="update" />
         </div>
     </div>
-
 </div>
 
     <div class="cart_summary">
 <h2>Warenkorb Summe</h2>
 <div class="summary_table">
     Gesamtpreis: <?php echo $totalprice; ?> €
-
-
 </div>
-        <input type="hidden" name="prod_id" value="<?php echo $row['id']; ?>">
-        <input class="cart_update" type="submit" value="Kasse" name="checkout">
-    </div>
+<a class="btn-link tocheckout" style="width: 150px;" href="index.php?page=cart&cart=checkout">Zur Kasse</a>
+</div>
+    <div class="clearfloat"></div>
 
 </form>
 
