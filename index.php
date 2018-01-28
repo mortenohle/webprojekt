@@ -33,8 +33,9 @@
                         <li><a href="index.php">Home</a></li>
                         <li><a href="index.php?page=category&category=all">Produkte</a>
                             <ul>
-                                <li><a href="index.php?page=category&category=shirts">Shirts</a></li>
-                                <li><a href="index.php?page=category&category=pullover">Pullover</a></li>
+                                <li><a href="index.php?page=category&category=2">Shirts</a></li>
+                                <li><a href="index.php?page=category&category=1">Jacken</a></li>
+                                <li><a href="index.php?page=category&category=3">Hemden</a></li>
                             </ul>
                         </li>
                         <li><a href="index.php?page=about">Über uns</a></li>
@@ -63,15 +64,17 @@
                         <li><a href='index.php?page=account&action=registrieren'>Registrieren</a></li>
                     <?php } ?>
 
-                    <li class="warenkorb"><a href="index.php?page=cart&cart=show"><img src="images/warenkorb.svg" alt="Warenkorb"><span class="li-cart-mobile">Warenkorb</span></a>
+                    <li class="warenkorb loggedinuser"><a href="index.php?page=cart&cart=show"><img src="images/warenkorb.svg" alt="Warenkorb"><span class="li-cart-mobile">Warenkorb</span></a>
                         <?php if (!empty($_SESSION["cart"])) { ?>
-                        <ul class="transition cart-dropdown">
-                            <div class="user-dropdown-wrap">
+                        <ul class="transition">
+                            <div class="user-dropdown-wrap cartwidget">
+                                <?php include_once "cart/widget.php"; ?>
+
 
                             </div>
                         </ul>
                     </li>
-                    <?php } ?>
+                <?php } ?>
                     <li class="toggle-search"><img src="images/suche.svg" alt="Suche" class="search-icon"></li>
                 </ul>
             </div>

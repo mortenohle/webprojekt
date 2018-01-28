@@ -20,7 +20,9 @@ if($_POST["update"]) {
 
    $qty = $_POST["qty"];
 
-    print_r($qty);
+   print_r($qty);
+
+   $_SESSION["cart"] = $qty;
 
 
 

@@ -42,7 +42,7 @@ if (isset($_SESSION["userid"])) {
 
     <div class="checkout_details">
 <h2>Rechnungsdetails</h2>
-
+<div class="checkout-form">
   <p class="form-row-wide">
       <div class="dropdown-select-wrapper">
     <select class="dropdown-select" id="salutation" name='salutation'>
@@ -74,6 +74,7 @@ if (isset($_SESSION["userid"])) {
         </p>
 
         <div style="clear: both"></div>
+    </div>
     </div>
 
     <div class="checkout_payment">
@@ -119,7 +120,7 @@ if (isset($_SESSION["userid"])) {
             <img class='cart_image' src='images/products/".$imgurl."' alt='product placeholder'>
         </div>
         <div class='checkout_pright'>
-           <span class=\"cart_desc vertical_align_middle \">".$row['name']."<br>Menge: ".$loopqty."</span>
+           <span class=\"cart_desc\">".$row['name']."<br>Menge: ".$loopqty."</span>
         </div>
 
 

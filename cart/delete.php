@@ -8,14 +8,19 @@
 
 if (isset($_GET["id"])) {
 
+
+// Warenkorb Elemente zählen
+    $cart_items = $_SESSION["cart"];
+    $cart_count = count($cart_items);
+
     $delete_id = $_GET["id"];
 
-
+if ($cart_count < 2) { unset($_SESSION["cart"]); } else {
     foreach($_SESSION["cart"] as $subkey => $subarray){
         if($subarray["product_id"] == $delete_id){
             unset($_SESSION["cart"][$subkey]);
         }
-    }
+    }}
 
      /* $key = array_search($del_val, $_SESSION["cart"]);
     if (false !== $key) {
