@@ -97,8 +97,8 @@ foreach ($con->query($sql_for_cart) as $row) {
         <span class=\"cart_price vertical_align_middle \">".$row['price']." €</span>
     </div>
     <div class=\"box\">
-    <input type='hidden' name='qty[prod_id]' value='".$row['id']."'>
-        <input class=\"quantity vertical_align_middle \" type=\"number\" name=\"qty[quantity]\" min=\"1\" max=\"9\" step=\"1\" value=\"".$loopqty."\">
+   <input type='hidden' name='qty[".$i."][product_id]' value='".$row['id']."'>
+           <input class=\"quantity vertical_align_middle \" type=\"number\" name=\"qty[".$i."][quantity]\" min=\"1\" max=\"9\" step=\"1\" value=\"".$loopqty."\">
     </div>
     <div class=\"box\">
         <span class=\"cart_price vertical_align_middle \">".$row['price'] * $loopqty ." €</span>

@@ -6,7 +6,8 @@
 <body>
 <form name="frmChange" method="post" action="changepw.php" onSubmit="return validatePassword()">
 <div style="width:500px;">
-<div class="message"><?php if(isset($message)) { echo $message; } ?></div>
+<div class="message">
+	<?php if(isset($message)) { echo $message; } ?></div>
 <table border="0" cellpadding="10" cellspacing="0" width="500" align="center" class="tblSaveForm">
 <tr class="tableheader">
 <td colspan="2">Change Password</td>

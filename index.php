@@ -65,7 +65,7 @@
 
                     <li class="warenkorb"><a href="index.php?page=cart&cart=show"><img src="images/warenkorb.svg" alt="Warenkorb"><span class="li-cart-mobile">Warenkorb</span></a>
                         <?php if (!empty($_SESSION["cart"])) { ?>
-                        <ul class="transition cart-dropdown">
+                        <ul class="transition">
                             <div class="user-dropdown-wrap">
 
                             </div>
