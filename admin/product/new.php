@@ -42,6 +42,11 @@ if ($_GET["action"] == "new") {
                 </div>
             </div>
 
+                <div class="row">
+                    <span class="input-heading">EAN-Code</span>
+                    <input type="text" name="product_ean">
+                </div>
+
             <div class="row">
                 <span class="input-heading">Produktbeschreibung</span>
                 <textarea name="product_desc"></textarea>
@@ -103,6 +108,10 @@ if ($_GET["action"] == "new") {
         $err_artnr = "Bitte gib eine Artikelnummer an!<br>";
         $valid = false;
     }
+    if (empty($_POST["product_ean"])) {
+        $err_artnr = "Bitte gib den EAN-Code ein!<br>";
+        $valid = false;
+    }
 
     if ($valid) {
         try {
@@ -134,7 +143,7 @@ if ($_GET["action"] == "new") {
 
             include_once('../db/connect.php');
 
-            $stmt = $con->prepare("INSERT INTO products (id, `name`, `desc`, category_id, price, artnr, img) VALUES (:id, :product_name, :product_desc, :category_id, :price, :artnr, :img)");
+            $stmt = $con->prepare("INSERT INTO products (id, `name`, `desc`, category_id, price, artnr, img, ean) VALUES (:id, :product_name, :product_desc, :category_id, :price, :artnr, :img, :ean)");
             $myNull = null;
             $stmt->bindParam(':id', $myNull, PDO::PARAM_NULL);
             $stmt->bindParam(':product_name', $product_name, PDO::PARAM_STR);
@@ -143,12 +152,14 @@ if ($_GET["action"] == "new") {
             $stmt->bindParam(':price', $product_price, PDO::PARAM_STR);
             $stmt->bindParam(':artnr', $product_artnr, PDO::PARAM_INT);
             $stmt->bindParam(':img', $product_img_url, PDO::PARAM_STR);
+            $stmt->bindParam(':ean', $product_ean, PDO::PARAM_INT);
 
             $product_name = $_POST['product_name'];
             $product_desc = $_POST['product_desc'];
             $product_category = $_POST['product_category'];
             $product_price = $_POST['product_price'];
             $product_artnr = $_POST['product_artnr'];
+            $product_ean = $_POST['product_ean'];
             $product_img = $_FILES['product_image']['name'];
 
             $placeholder_img = "placeholder.jpg";

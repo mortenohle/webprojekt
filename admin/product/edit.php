@@ -58,6 +58,11 @@ if ($_GET["action"] == "edit") {
                 </div>
 
                 <div class="row">
+                    <span class="input-heading">EAN-Code</span>
+                    <input type="text" value="<?php echo $row["ean"]; ?>" name="product_ean">
+                </div>
+
+                <div class="row">
                     <span class="input-heading">Produktbeschreibung</span>
                     <textarea name="product_desc"><?php echo $row["desc"]; ?></textarea>
                 </div>
@@ -160,7 +165,7 @@ if ($_GET["action"] == "edit") {
 
             include_once('../db/connect.php');
 
-            $stmt = $con->prepare("UPDATE products SET `name` = :name, `desc` = :desc, category_id = :category_id, price = :price, artnr = :artnr, img = :img WHERE id = :id ");
+            $stmt = $con->prepare("UPDATE products SET `name` = :name, `desc` = :desc, category_id = :category_id, price = :price, artnr = :artnr, img = :img, ean = :ean WHERE id = :id ");
             $stmt->bindParam(':name', $product_name);
             $stmt->bindParam(':desc', $product_description);
             $stmt->bindParam(':category_id', $product_category);
@@ -168,6 +173,7 @@ if ($_GET["action"] == "edit") {
             $stmt->bindParam(':artnr', $product_artnr);
             $stmt->bindParam(':img', $product_img_url);
             $stmt->bindParam(':id', $product_id);
+            $stmt->bindParam(':ean', $product_ean);
 
             $product_name = $_POST['product_name'];
             $product_description = $_POST['product_desc'];
@@ -175,6 +181,7 @@ if ($_GET["action"] == "edit") {
             $product_price = $_POST['product_price'];
             $product_artnr = $_POST['product_artnr'];
             $product_id = $_POST['product_id'];
+            $product_ean = $_POST['product_ean'];
             $product_img = $_FILES['product_image']['name'];
 
             $current_img = $_POST['current_img'];

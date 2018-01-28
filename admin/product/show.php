@@ -56,6 +56,9 @@
             Preis
         </div>
         <div class="product-col">
+            EAN-Code
+        </div>
+        <div class="product-col">
 
         </div>
     </div>
@@ -87,6 +90,7 @@ echo "
 <div class='product-col'>".$row['artnr']."</div>
 <div class='product-col'>".$row["cat_name"]."</div>
 <div class='product-col'>".$row['price']." €</div>
+<div class='product-col'>".$row['ean']."</div>
 <div class='product-col actions'>
 <a><a href='../index.php?page=product&product=show&id=".$row['id']."' target='_blank'><i class='fa fa-eye' aria-hidden='true'></i></a></span>
 <span><a href='index.php?page=product&action=edit&id=".$row['id']."'><i class='fa fa-pencil' aria-hidden='true'></i></a></span>
