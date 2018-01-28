@@ -40,15 +40,15 @@ foreach ($cart_items  AS $prod_id) {
     <div class="cart_header">
 
     <div class="box">
-        <span class="cartlabel">Löschen</span>
+        <span class="cartlabel"></span>
     </div>
     <div class="box">
-    <span class="cartlabel">Bild</span>
+    <span class="cartlabel"></span>
     </div>
     <div class="box">
         <span class="cartlabel">Beschreibung</span>
     </div>
-    <div class="box">
+    <div class="box pricing">
         <span class="cartlabel">Preis</span>
     </div>
     <div class="box">
@@ -86,7 +86,7 @@ foreach ($con->query($sql_for_cart) as $row) {
     <div class=\"box\">
         <span class=\"cart_desc vertical_align_middle \">".$row['name']."</span>
     </div>
-    <div class=\"box\">
+    <div class=\"box pricing\">
         <span class=\"cart_price vertical_align_middle \">".$row['price']." €</span>
     </div>
     <div class=\"box\">
