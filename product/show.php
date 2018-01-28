@@ -46,6 +46,7 @@ $result2 = $cat->fetch();
                 <span><b>Kategorie:</b> <a href="index.php?page=category&category=<?php echo $result2["id"]; ?>"><?php echo $result2["name"]; ?></a></span>
                 <br><span class="single-product-ean"><b>EAN-Code:</b> <?php echo $result["ean"]; ?></span>
             </div>
+
             </div>
 
 

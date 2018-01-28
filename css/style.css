@@ -395,7 +395,6 @@ a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {backg
 }
 .single-product-ean {display: block; padding-top: 7px; color: #666;}
 .single-product-ean b {color: #333;}
-
 input[type="text"], input[type="number"], input[type="email"], input[type="tel"] {
     display: inline-block;
     padding: 12px 15px;
