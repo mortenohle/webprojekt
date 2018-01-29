@@ -147,7 +147,8 @@ if (isset($_SESSION["userid"])) {
     </table>
 
     </div>
-    <input type='submit' value='kostenpflichtig Bestellen' name='checkout'>
+    <input style="float: right;" type='submit' value='kostenpflichtig Bestellen' name='checkout'>
+    <div class="clearfloat"></div>
 
 </form>
 

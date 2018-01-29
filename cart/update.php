@@ -1,4 +1,4 @@
- <?php
+<?php
 /**
  * Created by PhpStorm.
  * User: morten
@@ -8,7 +8,7 @@
 
 if($_POST["update"]) {
 
-   /*
+   /* $prod_id = $_POST['prod_id'];
     $new_qty = $_POST['quantity'];
 
     print_r($prod_id);
@@ -17,23 +17,12 @@ if($_POST["update"]) {
     foreach( $prod_id as $key => $id ) {
         $_SESSION["cart"][$id] = $new_qty[$key];
     } */
-    $qty = $_POST["qty"];
 
-    $prod_id = $_POST['prod_id'];
-    $new_quantity = $qty['quantity'];
-
-    foreach ($qty as $key => $prod_id) {
-
-    }
-
-
-    echo "ID " . $prod_id . " Menge:" . $new_quantity;
-
-
+   $newcart = $_POST["qty"];
 
    print_r($qty);
 
-   $_SESSION["cart"] = $qty;
+   $_SESSION["cart"] = $newcart;
 
 
 
