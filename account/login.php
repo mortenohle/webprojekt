@@ -23,12 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['username'] = $row["firstname"];
             header('Location: index.php');
         } else {
-            if ($e_mail == $row['e_mail']) {
-                echo "Passwort falsch eingegeben";
+            if ($e_mail == $row['email']) {
+                echo "<div class='login-fehler'>Passwort falsch eingegeben!</div>";
                 session_start();
                 $_SESSION['status'] = false;
             } else {
-                echo "E-Mail-Adresse nicht in der Datenbank gefunden";
+                echo "<div class='login-fehler'>Die E-Mail-Adresse ist nicht hinterlegt!</div>";
                 session_start();
                 $_SESSION['status'] = false;
             }
@@ -44,15 +44,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="loginbox">
     <img src="images/avatar.png" class="avatar">
     <h1>Login</h1>
-    <form action="logincheck.php" method="post">
+    <form action="" method="post">
         <p>E-Mail-Adresse</p>
         <input type="email" size="40" maxlength="150" name="e_mail" placeholder=""<br><br>
         <p>Passwort</p>
         <input type="password" size="40" maxlength="150" name="passwort" placeholder=""<br><br>
         <input type="submit" value="Login"
         <br>
-        <a href="passwortvergessen.php">Passwort vergessen?</a><br>
-        <a href="registrieren.php">Jetzt Registrieren</a><br>
+        <a href="index.php?page=account&action=pwvergessen" class="login-link-bottom">Passwort vergessen?</a><br>
+        <a href="index.php?page=account&action=registrieren" class="login-link-bottom">Jetzt Registrieren!</a><br>
     </form>
 </div>
 

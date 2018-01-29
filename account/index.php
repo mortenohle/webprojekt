@@ -19,6 +19,18 @@ if (isset($_GET["page"]))
         case "speichern":
             include "account/speichern.php";
             break;
+        case "pwvergessen":
+            include "account/passwortvergessen.php";
+            break;
+        case "pwsenden":
+            include "account/passwortvergessen_check.php";
+            break;
+        case "pwneu":
+            include "account/formpasswortzuruecksetzen.php";
+            break;
+        case "pwneusuccess":
+            include "account/passwortzuruecksetzen.php";
+            break;
         default:
             echo "Die Seite wurde nicht gefunden";
             die();
