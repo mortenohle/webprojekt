@@ -106,8 +106,9 @@ button[type="submit"] img {width: 24px; height: auto;}
 #main-slider .inner-wrapper {position: relative; max-width: 1080px; height: 100%; margin-top: -20px;}
 .slide-content {z-index: 3; position: absolute; color: #FFF; top: 50%; transform: translate(0, -50%)}
 .slide-heading {display: block; font-weight: 300; font-size: 32px; letter-spacing: 2px; padding-bottom: 20px;}
-.slide-content p {font-size: 16px; font-weight: 300; color: #EEE; letter-spacing: 1px; line-height: 28px;}
+.slide-content p {font-size: 16px; font-weight: 500; color: #EEE; letter-spacing: 1px; line-height: 28px;}
 .slide-content a.btn-link {margin-top: 30px;}
+.slide-content.dark p, .slide-content.dark .slide-heading {color: #333333;}
 
 /** Pagination **/
 .category-info {color: #666; font-size: 0; display: block;}
@@ -390,7 +391,7 @@ a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {backg
     margin: 30px 0px;
 }
 .quantity {
-    width: 30px;
+    width: 60px;
     margin-right: 10px;
 }
 .single-product-ean {display: block; padding-top: 7px; color: #666;}
@@ -425,6 +426,7 @@ footer p {padding: 20px 0;}
 .footer-menu ul li:last-child::after {content: "";}
 .footer-bottom-text {font-size: 14px; font-weight: 300;}
 .footer-bottom-text .fa {color: #d2b598;}
+.copyright {display: block; padding-top: 10px;}
 
 /** basic input styling */
 

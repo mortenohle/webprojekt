@@ -98,12 +98,18 @@
                     <div class="slide-content">
                         <span class="slide-heading">All Black</span>
                         <p>Ausgewählte und hochwertige Designerstücke.<br>Entdecke unsere neue All Black Kollektion.</p>
-                        <a class="btn-link" href="#">Mehr erfahren</a>
+                        <a class="btn-link" href="index.php?page=category&category=all">Zu den Produkten</a>
                     </div>
                 </div>
             </li>
             <li style="background-image: url(images/slide_02.jpg);">
-                <div class="content"><a href="http://imageslidermaker.com">Slide Two</a></div>
+                <div class="inner-wrapper">
+                    <div class="slide-content dark">
+                        <span class="slide-heading">Hemden</span>
+                        <p>Businesslooks, die überzeugen!<br>Entdecke unsere Hemden.</p>
+                        <a class="btn-link" href="index.php?page=category&category=all">Zu den Produkten</a>
+                    </div>
+                </div>
             </li>
             <li style="background-image: url(images/slide_03.jpg);">
 
@@ -183,6 +189,7 @@
     </div>
        <div class="footer-bottom-text">
                Made with <i class="fa fa-heart-o" aria-hidden="true"></i> in Stuttgart
+           <span class="copyright">&copy; 2018 by LOGO - Luxury Original Glamorous Outfits</span>
        </div>
 </footer>
 
