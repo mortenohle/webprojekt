@@ -149,17 +149,51 @@ a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {backg
 .category-filter ul li:after {content: "|"; padding-left: 10px; color: #666;}
 .category-filter ul li:last-child:after {content: ""; padding: 0;}
 .category-filter ul li a {color: #666;}
-/** Login**/
+/** Login **/
+
+button.btn-link {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: inline-block;
+    background: #d2b598;
+    text-decoration: none;
+    color: #FFF;
+    padding: 12px 30px;
+    font-size: 15px;
+    border: 1px solid #d2b598;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    border-radius: 5px;
+}
+button.btn-link:hover, a.btn-link:hover {
+    background: transparent;
+    color: #d2b598;
+}
+button.btn-link.outline {
+    background: transparent;
+    color: #d2b598;
+}
+button.btn-link.outline:hover {
+    background: #d2b598;
+    color: #FFF;
+}
+a.btn-link:hover {background: #d2b598; color: #FFF;}
+.pwvergessen {
+    margin-top: 20px;
+}
+.pw-form {margin-top: 15px;}
 .loginbox{
-    width: 320px;
+    max-width: 400px;
+    width: 100%;
     height: auto;
     background-color: white;
-    color: black;
-    border: 2px solid grey;
+    color: #333333;
+    border: 1px solid #EEEEEE;
     font-family: Lato;
     padding: 22px;
-    padding-top: 22px;
-    padding-bottom:22px;
     box-sizing: border-box;
     margin: 0 auto;
 }
@@ -175,22 +209,18 @@ a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {backg
 
 .loginbox h1{
     color: #d2b598;
-    font-weight: lighter;
+    font-weight: 300;
     margin: 0;
-    padding: 0 0 20px;
+    padding: 10px 0 20px 0;
     text-align: center;
-    color: #d2b598;
-    font-weight: lighter;
 }
 
 
 
-.loginbox p{
+.loginbox p {
     margin: 0;
-    padding: 0;
-    font-family: Lato;
-    color: dimgrey;
-    font-weight: lighter;
+    padding: 0 0 5px 0;
+    line-height: 22px;
 }
 
 
@@ -215,16 +245,18 @@ a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {backg
 }
 
 
-.loginbox input[type="email"], input[type="password"]{
-    border:1px solid dimgrey;
+.loginbox input[type="email"], .loginbox input[type="password"]{
+    border:1px solid #DDDDDD;
     outline: none;
-    height: 30px;
+    height: 40px;
     font-size: 16px;
     font-family: Lato;
     outline: none;
     border-radius: 5px;
+    padding: 12px 15px;
 }
-
+a.login-link-bottom {color: #666;}
+a.login-link-bottom:hover {color: #d2b598;}
 
 
 .loginbox input[type="submit"] {
@@ -234,69 +266,59 @@ a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {backg
     background-color: white;
     font-family: Lato;
     color: #d2b598;
-    font-weight: lighter;
-    font-size: 18px;
-    border-radius: 30px; /* border-radius - Abrundung Ecken *//
+    font-weight: normal;
+    font-size: 16px;
+    border-radius: 5px; /* border-radius - Abrundung Ecken *//
 }
 
-.loginbox a{
-    text-decoration: none;
-    font-size: 14px;
-    font-family: Lato;
-    line-height: 20px;
-    color: dimgrey;
-    font-weight: lighter;
+.login-fehler {
+    display: block;
+    text-align: center;
+    padding-bottom: 20px;
 }
 
 /**Registrierung**/
-.registrierungsbox{
-    width: 680px;
+
+span.input-heading {
+    display: block;
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+.registrierungsbox {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
     height: auto;
     background-color: white;
-    border: 2px solid grey;
-    font-family: Lato;
-    color: black;
+    border: 1px solid #EEEEEE;
     font-size: 14px;
     font-family: Lato;
     padding: 22px;
-
-}
-
-.registrierungsbox h1{
-    font-family: Lato;
-    font-weight: lighter;
-    text-align: left;
-    display: block;
-    color: #d2b598;
-}
-
-.registrierungsbox.p{
-    font-family:Lato;
-}
-
-.registrierungsbox input{
-    width:100%;
-    margin-bottom: 15px;
-    border: 1px solid lightgrey;
     box-sizing: border-box;
 }
-
-
-.registrierungsbox input[type="text"], input[type="email"],input[type="password"], input[type="date"] {
-    height: 30px;
-    font-size: 14px;
-    font-family: Lato;
-    font-weight: lighter;
-}
-.registrierungsbox input[type="submit"]{
-    width: 100%;
-    font-size: 14px;
-    font-family: Lato;
-    font-weight: lighter;
+.registrierungsbox h1 {
     color: #d2b598;
-    border: 1px solid #d2b598;
-    background-color: white;
 }
+.registrierungsbox input, .registrierungsbox select {
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+.registrierungsbox select {
+    background: url("../images/select.png");
+    background-repeat: no-repeat;
+    background-position: right;
+}
+input.input-wdh {
+    margin-bottom: 10px;
+}
+.registrierungsbox h1{
+    text-align: center;
+}
+.registrierungsbox a.btn-link {
+    margin-top: 10px;
+}
+
 .registrierungsbox h4{
     font-weight: bold;
 }
