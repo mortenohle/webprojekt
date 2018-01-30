@@ -55,3 +55,30 @@ $result2 = $cat->fetch();
 
 
 </div>
+
+<div class="spp-tabs">
+    <div class="inner-wrapper">
+        <div id="spp-tab-container">
+
+            <input id="tab1" type="radio" name="tabs" checked>
+            <label for="tab1">Beschreibung</label>
+
+            <input id="tab2" type="radio" name="tabs">
+            <label for="tab2">Bewertungen</label>
+
+            <section id="content1">
+                <div class="tab-inner-section">
+                    <p><?php echo $result["desc"]; ?></p>
+                </div>
+            </section>
+
+            <section id="content2">
+                <div class="tab-inner-section">
+                    Kundenbewertung
+                </div>
+            </section>
+
+
+        </div>
+    </div>
+</div>
