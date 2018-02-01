@@ -12,6 +12,12 @@ if (isset($_GET["product"]))
         case "show":
             include "product/show.php";
             break;
+        case "rate":
+            include "product/kundenbewertung.php";
+            break;
+        case "ratesuccess":
+            include "product/speichern_kundenbewertung.php";
+            break;
         default:
             echo "Die Seite wurde nicht gefunden";
             die();
