@@ -12,9 +12,7 @@ else {
     $imgurl = "placeholder.jpg";
 }
 if (isset($_POST["product"])) {
-    include "cart/addtocart.php";
-
-    echo "<span>Das Produkt wurde zum Warenkorb hinzugefügt. <a href='index.php?page=cart&cart=show'>Zum Warenkorb</a> </span>";
+    $cart->addtocart($_POST["product"],$_POST["quantity"],$_POST["size"]);
 }
 ?>
 <div class="col2 single-product-page">
@@ -30,6 +28,14 @@ if (isset($_POST["product"])) {
             <div class="prod_addtocart">
 
                 <form action="" method="post">
+                    <div class="dropdown-select-wrapper">
+                        <select class="dropdown-select" id="size" name='size'>
+                            <option value='s'>S</option>
+                            <option value='m'>M</option>
+                            <option value='l'>L</option>
+                            <option value='xl'>XL</option>
+                        </select>
+                    </div>
                     <input class="quantity" type="number" name="quantity" min="1" max="9" step="1" value="1">
                     <input type="hidden" name="product" value="<?php echo $result["id"]; ?>">
                     <input class="addtocart_button" type="submit" value="In den Einkaufswagen">

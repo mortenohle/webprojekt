@@ -85,7 +85,7 @@ if (isset($_SESSION["userid"])) {
         <label for='kk'>Kreditkarte</label>
         <input type='radio' id='paypal' name='payment' value='paypal'>
         <label for='paypal'>PayPal</label>
-        <input type='radio' id='bank' name='payment' value='bank'>
+        <input type='radio' id='bank' name='payment' value='bank' checked>
         <label for='bank'>Überweisung</label>
     </fieldset>
     </div>

@@ -1,8 +1,11 @@
 <?php
     session_start();
     include_once('db/connect.php');
+include_once "cart/stock-class.php";
     include_once "cart/cart-class.php";
-    $cart = new cart();
+
+    $cart = new cart($con);
+    $stock = new stockmanagement($con);
 ?>
 <!doctype html>
 <html>
@@ -67,8 +70,8 @@
                         <li><a href='index.php?page=account&action=registrieren'>Registrieren</a></li>
                     <?php } ?>
 
-                    <li class="warenkorb loggedinuser"><span class="warenkorb-bubble"><?php echo $cart->cartcount(); ?></span><a href="index.php?page=cart&cart=show"><img src="images/warenkorb.svg" alt="Warenkorb"><span class="li-cart-mobile">Warenkorb</span></a>
-                        <?php if (!empty($_SESSION["cart"])) { ?>
+                    <li class="warenkorb loggedinuser"><?php if (!$cart->isempty()) { ?><span class="warenkorb-bubble"><?php echo $cart->cartcount(); ?></span><?php }?><a href="index.php?page=cart&cart=show"><img src="images/warenkorb.svg" alt="Warenkorb"><span class="li-cart-mobile">Warenkorb</span></a>
+                        <?php if (!$cart->isempty()) { ?>
                         <ul class="transition">
                             <div class="user-dropdown-wrap cartwidget">
                                 <?php include_once "cart/widget.php"; ?>

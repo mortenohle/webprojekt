@@ -5,6 +5,7 @@
  * Date: 06.11.17
  * Time: 12:02
  */
+$totalprice = 0;
 if($_POST["update"]) {
     $newcart = $_POST["qty"];
     $cart->updateall($newcart);
@@ -33,7 +34,9 @@ foreach ($cart_items  AS $prod_id) {
         $i++;
     }
 }
+print_r($_SESSION["cart"]);
 ?>
+
 <form action="index.php?page=cart&cart=show" method="post">
 <div class="cartbox">
 
@@ -67,6 +70,7 @@ foreach ($con->query($sql_for_cart) as $row) {
     foreach($_SESSION["cart"] as $subkey => $subarray){
         if($subarray["product_id"] == $id){
             $loopqty = ($_SESSION["cart"][$subkey]["quantity"]);
+            $loopsize = ($_SESSION["cart"][$subkey]["size"]);
         }
     }
     if (!empty($row['img'])) {
@@ -84,13 +88,14 @@ foreach ($con->query($sql_for_cart) as $row) {
         <img class=\"cart_image\" src='images/products/".$imgurl."' alt='product placeholder'>
     </div>
     <div class=\"box\">
-        <span class=\"cart_desc vertical_align_middle \">".$row['name']."</span>
+        <span class=\"cart_desc vertical_align_middle \">".$row['name']."<br>Größe: ".strtoupper($loopsize)."</span>
     </div>
     <div class=\"box pricing\">
         <span class=\"cart_price vertical_align_middle \">".$row['price']." €</span>
     </div>
     <div class=\"box\">
    <input type='hidden' name='qty[".$i."][product_id]' value='".$row['id']."'>
+   <input type='hidden' name='qty[".$i."][size]' value='".$loopsize."'>
            <input class=\"quantity vertical_align_middle \" type=\"number\" name=\"qty[".$i."][quantity]\" min=\"1\" max=\"9\" step=\"1\" value=\"".$loopqty."\">
     </div>
     <div class=\"box\">

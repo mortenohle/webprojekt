@@ -8,28 +8,41 @@
 
 class cart {
 
+    private $conn;
+
+    public function __construct($con) {
+        $this->conn = $con;
+    }
+
     public function check_cart() {
         if (!isset($_SESSION["cart"])) {
             $_SESSION["cart"] = array();
         }
     }
-    public function addtocart($id, $quantity)
-    {
+    public function addtocart($id, $quantity, $size) {
 
-        if (isset($_SESSION["cart"])) {
+        $stock = new stockmanagement($this->conn);
+
+        if ($stock->isavaible($id, $quantity, $size)) {
+
+            if (isset($_SESSION["cart"])) {
 
             foreach ($_SESSION["cart"] as $subkey => $subarray) {
-                if ($subarray["product_id"] == $id) {
+                if ($subarray["product_id"] == $id && $subarray["size"] == $size) {
                     $_SESSION["cart"][$subkey]["quantity"] += $quantity;
                 } else {
-                    $add_to_cart = array("product_id" => $id, "quantity" => $quantity);
+                    $add_to_cart = array("product_id" => $id, "quantity" => $quantity, "size" => $size);
                     // $_SESSION["cart"] = array_merge_recursive( (array)$_SESSION["cart"], (array)$add_to_cart );
                     array_push($_SESSION["cart"], $add_to_cart);
                 }
 
             }
 
-        } else { echo "Warenkorb wurde nicht gefunden."; }
+        } else { $_SESSION["cart"] = array(array("product_id" => $id, "quantity" => $quantity, "size" => $size)); }
+
+            echo "<span>Das Produkt wurde zum Warenkorb hinzugefügt. <a href='index.php?page=cart&cart=show'>Zum Warenkorb</a> </span>";
+
+        } else { echo "Die gewählte Größe, Menge des Produkts ist leider nciht mehr auf Lager.";}
 
     }
 
@@ -56,7 +69,7 @@ class cart {
 
     public function isempty() {
 
-        return count($this->cartcount() <= 0);
+        return $this->cartcount() <= 0;
     }
 
 }
