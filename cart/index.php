@@ -13,6 +13,9 @@ if (isset($_GET["cart"]))
         case "show":
             include "cart/show.php";
             break;
+        case "show2":
+            include "cart/show2.php";
+            break;
         case "update":
             include "cart/update.php";
             break;

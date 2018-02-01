@@ -5,7 +5,11 @@
  * Date: 06.11.17
  * Time: 12:02
  */
-$totalprice = 0;
+
+$cart->getcart();
+
+
+/* $totalprice = 0;
 if($_POST["update"]) {
     $newcart = $_POST["qty"];
     $cart->updateall($newcart);
@@ -129,4 +133,4 @@ foreach ($con->query($sql_for_cart) as $row) {
 
 </form>
 
-<?php }?>
+<?php }?> */
