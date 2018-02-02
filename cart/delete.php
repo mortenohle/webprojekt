@@ -6,6 +6,8 @@
  * Time: 19:47
  */
 
+//Everything below is deprecated. Just leave it as a Fallback Solution
+
 if (isset($_GET["id"])) {
 
 

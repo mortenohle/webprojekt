@@ -145,8 +145,14 @@ if (isset($_SESSION["userid"])) {
             <td><?php echo $total; ?> €</td>
         </tr>
     </table>
-
+        <div class="agb-check">
+        <input id="checkbox-agb" type="checkbox" name="agbs" required>
+        <label for="checkbox-agb">
+            Mit deiner Bestellung erklärst du dich mit unseren <a href="index.php?page=legal&legal=agb">Allgemeinen Geschäftsbedingungen</a> und <a href="index.php?page=legal&legal=widerruf">Widerrufsbestimmungen</a> einverstanden.
+        </label>
+        </div>
     </div>
+
     <input style="float: right;" type='submit' value='kostenpflichtig Bestellen' name='checkout'>
     <div class="clearfloat"></div>
 

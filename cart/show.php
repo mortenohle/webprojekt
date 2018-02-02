@@ -8,6 +8,7 @@
 
 $cart->getcart();
 
+//Everything below is deprecated. Just leave it as a Fallback Solution
 
 /* $totalprice = 0;
 if($_POST["update"]) {

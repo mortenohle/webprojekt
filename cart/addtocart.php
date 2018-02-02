@@ -6,6 +6,7 @@
  * Time: 22:35
  */
 
+//Everything below is deprecated. Just leave it as a Fallback Solution
 
 if (isset($_POST["product"]) && $_POST["quantity"] > 0 ) {
 

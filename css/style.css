@@ -819,6 +819,10 @@ fieldset label {
     color: #1d1d23;
     pointer-events: none;
 }
+.agb-check {
+    display: block;
+    margin: 20px 0;
+}
 @media (max-width: 800px) {
     .form-row-left {
         width: 100%;

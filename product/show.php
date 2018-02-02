@@ -5,6 +5,7 @@ include_once('db/connect.php');
 $sql = "SELECT * FROM products WHERE id = ".$id;
 $prod = $con->query($sql);
 $result = $prod->fetch();
+
 //placeholder abfrage
 if (!empty($result['img'])) {
     $imgurl = $result['img'];}
@@ -36,6 +37,16 @@ if (isset($_POST["product"])) {
                             <option value='xl'>XL</option>
                         </select>
                     </div>
+
+                    <?php
+                    // Abfrage des Lagerstatus
+                    /*
+                    if ($stock->isavaible($result["id"],) < 1) {
+                        echo ""
+                    }
+                    */
+
+                    ?>
                     <input class="quantity" type="number" name="quantity" min="1" max="9" step="1" value="1">
                     <input type="hidden" name="product" value="<?php echo $result["id"]; ?>">
                     <input class="addtocart_button" type="submit" value="In den Einkaufswagen">

@@ -38,4 +38,14 @@ class stockmanagement  {
         $statement->execute();
 
     }
+    public function howmany($id, $size) {
+
+        $statement = $this->conn->prepare("SELECT * FROM stock WHERE product_id = :id");
+        $statement->bindParam(':id', $id);
+        $statement->bindParam(':size', $size);
+        $statement->execute();
+        $result2 = $statement->fetch();
+
+        return $result2[$size];
+    }
 }

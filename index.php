@@ -156,6 +156,9 @@ include_once "cart/stock-class.php";
                 case "account":
                     include "account/index.php";
                     break;
+                case "legal":
+                    include "legal/index.php";
+                    break;
                 default:
                     include "start.php";
                     break;
@@ -190,10 +193,10 @@ include_once "cart/stock-class.php";
     </div>
     <div class="footer-menu">
                <ul>
-                       <li><a href="#">Kontakt</a></li>
-                   <li><a href="#">AGBs</a></li>
-                   <li><a href="#">Datenschutz</a></li>
-                   <li><a href="#">Impressum</a></li>
+                       <li><a href="index.php?page=legal&legal=widerruf">Widerrufsbelehrung</a></li>
+                   <li><a href="index.php?page=legal&legal=agb">AGBs</a></li>
+                   <li><a href="index.php?page=legal&legal=datenschutz">Datenschutz</a></li>
+                   <li><a href="index.php?page=legal&legal=impressum">Impressum</a></li>
                </ul>
     </div>
        <div class="footer-bottom-text">

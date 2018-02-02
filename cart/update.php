@@ -6,6 +6,8 @@
  * Time: 19:58
  */
 
+//Everything below is deprecated. Just leave it as a Fallback Solution
+
 if($_POST["update"]) {
 
    /* $prod_id = $_POST['prod_id'];
