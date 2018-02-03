@@ -5,6 +5,10 @@ include_once('db/connect.php');
 $sql = "SELECT * FROM products WHERE id = ".$id;
 $prod = $con->query($sql);
 $result = $prod->fetch();
+//size abfrage
+if (isset($_GET["size"])) {
+    $size = $_GET["size"];
+} else {$size = "s";}
 
 //placeholder abfrage
 if (!empty($result['img'])) {
@@ -25,28 +29,33 @@ if (isset($_POST["product"])) {
             <span class="prod_title"><?php echo $result["name"]; ?></span><br>
             <span class="prod_price"><?php echo $result["price"]; ?> €</span><br>
             <span class="prod_desc"><?php echo $result["desc"]; ?></span><br>
+            <?php
+            // Abfrage des Lagerstatus
+            $lager = $stock->howmany($result["id"], $size);
+
+            if ($lager < 1) {
+                echo "Größe ".strtoupper($size)." ist derzeit ausverkauft.";
+            }
+            if ($lager <= 10 && $lager > 1) {
+                echo "In Größe ".strtoupper($size)." sind noch ".$lager." auf Lager.";
+            }
+            if ($lager > 10) {
+                echo "Größe ".strtoupper($size)." ist auf Lager.";
+            }
+
+            ?>
 
             <div class="prod_addtocart">
 
                 <form action="" method="post">
-                    <div class="dropdown-select-wrapper">
-                        <select class="dropdown-select" id="size" name='size'>
-                            <option value='s'>S</option>
-                            <option value='m'>M</option>
-                            <option value='l'>L</option>
-                            <option value='xl'>XL</option>
+                    <div class="dropdown-select-wrapper size-select">
+                        <select id="sizeis" class="dropdown-select" id="size" name='size'>
+                            <option value='s' <?php if($size == "s") {echo "selected";} ?>>S</option>
+                            <option value='m' <?php if($size == "m") {echo "selected";} ?>>M</option>
+                            <option value='l' <?php if($size == "l") {echo "selected";} ?>>L</option>
+                            <option value='xl' <?php if($size == "xl") {echo "selected";} ?>>XL</option>
                         </select>
                     </div>
-
-                    <?php
-                    // Abfrage des Lagerstatus
-                    /*
-                    if ($stock->isavaible($result["id"],) < 1) {
-                        echo ""
-                    }
-                    */
-
-                    ?>
                     <input class="quantity" type="number" name="quantity" min="1" max="9" step="1" value="1">
                     <input type="hidden" name="product" value="<?php echo $result["id"]; ?>">
                     <input class="addtocart_button" type="submit" value="In den Einkaufswagen">

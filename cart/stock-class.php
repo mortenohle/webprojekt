@@ -42,7 +42,6 @@ class stockmanagement  {
 
         $statement = $this->conn->prepare("SELECT * FROM stock WHERE product_id = :id");
         $statement->bindParam(':id', $id);
-        $statement->bindParam(':size', $size);
         $statement->execute();
         $result2 = $statement->fetch();
 

@@ -41,8 +41,31 @@ $(document).ready(function () {
         $(this).find('img').toggle();
     });
 
+    //reload page on change of select input
     $('#sortby').on('change', function() {
         document.getElementById("sort").submit();
-    })
+    });
+
+    $('#sizeis').on('change', function() {
+
+        if ($.query.get('size').length) {
+            var size = $.query.get('size');
+            if (size) {
+                size = this.options[this.selectedIndex].value
+            }
+            var newUrl = $.query.set('size', size);
+            var oldurl = window.location.href.split('?')[0];
+
+            window.location.href = oldurl + newUrl;
+
+        } else {
+
+            window.location.href = window.location.href +'&size='+this.options[this.selectedIndex].value
+        }
+
+    });
+
+
+
 
 }); // End Document Ready

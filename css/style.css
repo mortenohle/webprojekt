@@ -418,6 +418,11 @@ input.input-wdh {
     padding: 20px 0px;
     font-size: 16px;
 }
+.size-select {
+width: 100px;
+    display: inline-block;
+    margin-right: 10px;
+}
 .spp-tabs {display: block; width: 100%; margin: 0 0 60px 0;}
 #spp-tab-container {min-width: 320px; width: 100%; margin: 0 auto; background: #fff; text-align: center;}
 .spp-tabs section {display: none; padding: 40px 0 0; border-top: 1px solid #ddd; text-align: left;}
@@ -464,6 +469,18 @@ input.input-wdh {
     label:before {
         margin: 0;
         font-size: 18px;
+    }
+    .size-select {
+        width: 48% !important;
+        display: inline-block;
+        margin-right: 2% !important;
+    }
+    input.quantity {
+        width: 48% !important;
+        margin-right: 0 !important;
+    }
+    input.addtocart_button {
+        width: 100% !important;
     }
 }
 
