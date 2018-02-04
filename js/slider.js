@@ -8,10 +8,10 @@ $(document).ready(function() {
     var first_slide = ul.find("li:first-child");
     var last_slide = ul.find("li:last-child");
 
-    // Clone the last slide and add as first li element
+    // Letzen Slide klonen und als erstes Listenelement verwenden
     last_slide.clone().prependTo(ul);
 
-    // Clone the first slide and add as last li element
+    // Ersten Slide klonen und als letztes Listenelement verwenden
     first_slide.clone().appendTo(ul);
 
     ul.find("li").each(function(indx) {
@@ -22,13 +22,13 @@ $(document).ready(function() {
 
     ul.css("margin-left", "-100%");
 
-    // Listen for click of prev button
+    // Prev Button
     $("#main-slider .prev").click(function() {
         console.log("prev button clicked");
         slide(slide_index - 1);
     });
 
-    // Listen for click of next button
+    // Next Button
     $("#main-slider .next").click(function() {
         console.log("next button clicked");
         slide(slide_index + 1);
@@ -40,12 +40,12 @@ $(document).ready(function() {
 
         ul.animate({"margin-left": margin_left_pc}, 400, function() {
 
-            // If new slide is before first slide...
+            // Kommt der neue Slide vor dem ersten Slide
             if(new_slide_index < 0) {
                 ul.css("margin-left", ((slide_count) * (-100)) + "%");
                 new_slide_index = slide_count - 1;
             }
-            // If new slide is after last slide...
+            // Kommt der neue Slide nach dem letzten Slide
             else if(new_slide_index >= slide_count) {
                 ul.css("margin-left", "-100%");
                 new_slide_index = 0;

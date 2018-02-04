@@ -111,7 +111,7 @@ include_once "cart/stock-class.php";
                     <div class="slide-content">
                         <span class="slide-heading">All Black</span>
                         <p>Ausgewählte und hochwertige Designerstücke.<br>Entdecke unsere neue All Black Kollektion.</p>
-                        <a class="btn-link" href="index.php?page=category&category=all">Zu den Produkten</a>
+                        <a class="btn-link" href="index.php?page=category&category=all">Zu unseren Produkten</a>
                     </div>
                 </div>
             </li>
@@ -120,12 +120,9 @@ include_once "cart/stock-class.php";
                     <div class="slide-content dark">
                         <span class="slide-heading">Hemden</span>
                         <p>Businesslooks, die überzeugen!<br>Entdecke unsere Hemden.</p>
-                        <a class="btn-link" href="index.php?page=category&category=all">Zu den Produkten</a>
+                        <a class="btn-link" href="index.php?page=category&category=3">Zu unseren Hemden</a>
                     </div>
                 </div>
-            </li>
-            <li style="background-image: url(images/slide_03.jpg);">
-
             </li>
         </ul>
         <div class="slide-nav prev transition"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
