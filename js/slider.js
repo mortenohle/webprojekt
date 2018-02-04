@@ -27,7 +27,6 @@ $(document).ready(function() {
         console.log("prev button clicked");
         slide(slide_index - 1);
     });
-
     // Next Button
     $("#main-slider .next").click(function() {
         console.log("next button clicked");

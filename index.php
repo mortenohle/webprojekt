@@ -105,6 +105,7 @@ include_once "cart/stock-class.php";
 <?php if (!isset($_GET["page"]) ) { ?>
 
     <div id="main-slider">
+
         <ul>
             <li style="background-image: url(images/slide_01.jpg);">
                 <div class="inner-wrapper">
