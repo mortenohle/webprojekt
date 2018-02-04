@@ -109,12 +109,12 @@ button[type="submit"] img {width: 24px; height: auto;}
 #main-slider {width: 100%; height: 500px; position: relative; overflow: hidden;}
 #main-slider ul {margin: 0; padding: 0; ist-style: none; position: absolute; width: 200%; height: 100%; top: 0;}
 #main-slider li {padding: 0; margin: 0; width: 50%; height: 100%; position: absolute; top: 0; bottom: 0; border: none; background-size: cover; background-repeat: none; background-position: center top; list-style: none;}
-#main-slider .slide-nav {position: absolute; display: block; top: 50%; transform: translate(0, -50%); color: #FFF; margin: 0; padding: 0; opacity: 0; z-index: 2; font-size: 36px; cursor: pointer;}
+#main-slider .slide-nav {position: absolute; display: block; top: 50%; transform: translate(0, -50%); color: #FFF; margin: 0; padding: 0; opacity: 0; z-index: 100; font-size: 36px; cursor: pointer;}
 #main-slider .slide-nav:hover {color: #d2b598;}
 #main-slider .slide-nav.prev {left: 0; margin-left: 50px;}
 #main-slider .slide-nav.next {right: 0; margin-right: 50px;}
 #main-slider:hover .slide-nav {opacity: 1.0;}
-#main-slider .inner-wrapper {position: relative; max-width: 1080px; height: 100%; margin-top: -20px;}
+#main-slider .inner-wrapper {position: relative; max-width: 1080px; height: 100%;}
 .slide-content {z-index: 3; position: absolute; color: #FFF; top: 50%; transform: translate(0, -50%)}
 .slide-heading {display: block; font-weight: 300; font-size: 32px; letter-spacing: 2px; padding-bottom: 20px;}
 .slide-content p {font-size: 16px; font-weight: 500; color: #EEE; letter-spacing: 1px; line-height: 28px;}
@@ -821,6 +821,15 @@ fieldset label {
 @media screen and (max-width: 799px) {
     .col2.single-product-page {grid-template-columns: 1fr; grid-column-gap: 0; max-width: 500px; margin-left: auto; margin-right: auto;}
     .prod_price {margin: 0;}
+}
+@media screen and (max-width: 699px) {
+    #main-slider li {background-position: 80% top;}
+    #main-slider .inner-wrapper {width: 100%; padding: 0;}
+    .slide-content {width: 100%; background: rgba(0,0,0,0.65); padding: 20px; box-sizing: border-box; transform: unset; bottom: 0; top: unset;}
+    .slide-content.dark .slide-heading, .slide-content.dark p {color: #FFF;}
+    .slide-content p {font-size: 15px;}
+    .slide-content .slide-heading {padding-bottom: 12px;}
+    .slide-content a.btn-link {margin-top: 16px;}
 }
 
 @media screen and (max-width: 499px) {
