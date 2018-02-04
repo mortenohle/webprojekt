@@ -149,6 +149,7 @@ a.pagination-link:hover, a.pagination-prev:hover, a.pagination-next:hover {backg
 .category-filter ul li:after {content: "|"; padding-left: 10px; color: #666;}
 .category-filter ul li:last-child:after {content: ""; padding: 0;}
 .category-filter ul li a {color: #666;}
+
 /** Login **/
 
 button.btn-link {
@@ -197,16 +198,13 @@ a.btn-link:hover {background: #d2b598; color: #FFF;}
     box-sizing: border-box;
     margin: 0 auto;
 }
-
-.avatar{
+.avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     margin: 0 auto;
     display: block;
 }
-
-
 .loginbox h1{
     color: #d2b598;
     font-weight: 300;
@@ -214,22 +212,42 @@ a.btn-link:hover {background: #d2b598; color: #FFF;}
     padding: 10px 0 20px 0;
     text-align: center;
 }
-
-
-
 .loginbox p {
     margin: 0;
     padding: 0 0 5px 0;
     line-height: 22px;
 }
-
-
-
-
+a.btn-link.fw,
+button.btn-link.fw{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+    text-align: center;
+}
 .loginbox input{
     width:100%;
     margin-bottom: 20px;
     box-sizing: border-box;
+}
+.loginbox textarea {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #EEE;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 14px;
+    padding: 12px 15px;
+    height: 140px;
+}
+.loginbox select {
+    margin-bottom: 20px;
+    font-size: 14px;
+    background: url("../images/select.png");
+    background-position: right;
+    background-repeat: no-repeat;
 }
 
 .loginbox input[type="email"]:before {
@@ -429,7 +447,7 @@ width: 100px;
 .tab-inner-section {max-width: 800px; width: 100%; margin: 0 auto;}
 .spp-tabs input {display: none;}
 .spp-tabs section p {color: #666; line-height: 24px;}
-
+.tab-inner-section a.btn-link {margin-top: 20px;}
 .spp-tabs label {
     display: inline-block;
     margin: 0 0 -1px;
@@ -461,6 +479,12 @@ width: 100px;
 #tab4:checked ~ #content4 {
     display: block;
 }
+.rating-result {display: block; margin-bottom: 50px;}
+.rating-user {display: block; color: #333; font-weight: 700;}
+.rating-date {display: block; color: #d2b598; padding: 5px 0;}
+.rating-text {display: block; color: #666; padding: 10px 0; line-height: 24px;}
+.rating-4-col {display: block; width: 100%; font-size: 0; border-top: 1px solid #EEE; padding-top: 10px; margin-top: 10px;}
+.rating-4-col .rating-col {display: inline-block; width: 25%; font-size: 15px; color: #666;}
 
 @media screen and (max-width: 650px) {
     label {
@@ -470,6 +494,8 @@ width: 100px;
         margin: 0;
         font-size: 18px;
     }
+    .rating-4-col .rating-col {width: 50%; padding-bottom: 10px;}
+    .rating-result {margin-bottom: 40px;}
     .size-select {
         width: 48% !important;
         display: inline-block;

@@ -89,8 +89,14 @@ $result2 = $cat->fetch();
             <input id="tab1" type="radio" name="tabs" checked>
             <label for="tab1">Beschreibung</label>
 
+            <?php
+            $sql_count = "SELECT COUNT(*) c FROM rating WHERE produkt_id = " . $id;
+            $result_count = $con->query($sql_count);
+            $count = $result_count->fetch(PDO::FETCH_ASSOC);
+            ?>
+
             <input id="tab2" type="radio" name="tabs">
-            <label for="tab2">Bewertungen</label>
+            <label for="tab2">Bewertungen (<?php echo $count["c"]; ?>)</label>
 
             <section id="content1">
                 <div class="tab-inner-section">
@@ -100,7 +106,89 @@ $result2 = $cat->fetch();
 
             <section id="content2">
                 <div class="tab-inner-section">
-                    Kundenbewertung
+
+                    <?php
+                    if(isset($_SESSION["username"])) {
+
+                        if ($count["c"] == 0) {
+                            echo "
+                                <p>Für dieses Produkt gibt es noch keine Bewertung. Sei der Erste!</p>
+                                <a class='btn-link' href='index.php?page=product&product=rate&id=" . $id . "'>Produkt bewerten!</a>";
+                        } else {
+                            $sql_rating = "SELECT rating.*, `user`.firstname AS firstname FROM rating, `user` WHERE rating.produkt_id =".$id." GROUP BY rating.id";
+
+                            foreach ($con->query($sql_rating) as $row) {
+                                $date_german = date('d.m.Y', strtotime($row['date']));
+                                echo "
+                                    <div class='rating-result'>
+                                    <span class='rating-user'>".$row['firstname']."</span>
+                                    <span class='rating-date'>".$date_german."</span>
+                                    <span class='rating-text'>".$row['kommentar']."</span>
+                                    <div class='rating-4-col'>
+                                        <div class='rating-col'>
+                                            <b>Qualität:</b> ".$row['qualitaet']."
+                                        </div>
+                                        <div class='rating-col'>
+                                            <b>Versand:</b> ".$row['versand']."
+                                        </div>
+                                        <div class='rating-col'>
+                                            <b>Passform:</b> ".$row['passform']."
+                                        </div>
+                                        <div class='rating-col'>
+                                            <b>Preis-/Leistung:</b> ".$row['leistung']."
+                                        </div>
+                                    </div>
+                                    </div>
+                                    ";
+
+                            }
+
+                            echo "<p>Wie gefällt dir das Produkt? Schreibe eine Bewertung!</p>
+                                <a class='btn-link' href='index.php?page=product&product=rate&id=" . $id . "'>Produkt bewerten!</a>";
+
+                        }
+                    } else {
+                        if ($count["c"] == 0) {
+                            echo "
+                                <p>Für dieses Produkt gibt es noch keine Bewertung. Melde dich an und sei der Erste!</p>
+                                <a class='btn-link' href='index.php?page=account&action=login'>Zur Anmeldung!</a>";
+                        } else {
+
+                            $sql_rating = "SELECT rating.*, `user`.firstname AS firstname FROM rating, `user` WHERE rating.produkt_id =".$id." GROUP BY rating.id";
+
+                            foreach ($con->query($sql_rating) as $row) {
+                                $date_german = date('d.m.Y', strtotime($row['date']));
+                                echo "
+                                    <div class='rating-result'>
+                                    <span class='rating-user'>".$row['firstname']."</span>
+                                    <span class='rating-date'>".$date_german."</span>
+                                    <span class='rating-text'>".$row['kommentar']."</span>
+                                    <div class='rating-4-col'>
+                                        <div class='rating-col'>
+                                            <b>Qualität:</b> ".$row['qualitaet']."
+                                        </div>
+                                        <div class='rating-col'>
+                                            <b>Versand:</b> ".$row['versand']."
+                                        </div>
+                                        <div class='rating-col'>
+                                            <b>Passform:</b> ".$row['passform']."
+                                        </div>
+                                        <div class='rating-col'>
+                                            <b>Preis-/Leistung:</b> ".$row['leistung']."
+                                        </div>
+                                    </div>
+                                    </div>
+                                    ";
+
+                            }
+
+                            echo "
+                                <p>Melde dich an, um eine Bewertung zu schreiben!</p>
+                                <a class='btn-link' href='index.php?page=account&action=login'>Zur Anmeldung!</a>";
+                        }
+                    }
+                    ?>
+
                 </div>
             </section>
 
