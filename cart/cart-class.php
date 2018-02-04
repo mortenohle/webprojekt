@@ -27,22 +27,24 @@ class cart {
 
             if (isset($_SESSION["cart"])) {
 
+            $notavaible = true;
             foreach ($_SESSION["cart"] as $subkey => $subarray) {
                 if ($subarray["product_id"] == $id && $subarray["size"] == $size) {
                     $_SESSION["cart"][$subkey]["quantity"] += $quantity;
-                } else {
-                    $add_to_cart = array("product_id" => $id, "quantity" => $quantity, "size" => $size);
-                    // $_SESSION["cart"] = array_merge_recursive( (array)$_SESSION["cart"], (array)$add_to_cart );
-                    array_push($_SESSION["cart"], $add_to_cart);
+                    $notavaible = false;
                 }
-
+            }
+            if ($notavaible) {
+                $add_to_cart = array("product_id" => $id, "quantity" => $quantity, "size" => $size);
+                // $_SESSION["cart"] = array_merge_recursive( (array)$_SESSION["cart"], (array)$add_to_cart );
+                array_push($_SESSION["cart"], $add_to_cart);
             }
 
         } else { $_SESSION["cart"] = array(array("product_id" => $id, "quantity" => $quantity, "size" => $size)); }
 
-            echo "<span>Das Produkt wurde zum Warenkorb hinzugefügt. <a href='index.php?page=cart&cart=show'>Zum Warenkorb</a> </span>";
+            echo $this->notification("<span>Das Produkt wurde zum Warenkorb hinzugefügt. <a href='index.php?page=cart&cart=show'>Zum Warenkorb</a> </span>");
 
-        } else { echo "Die gewählte Größe, Menge des Produkts ist leider nciht mehr auf Lager.";}
+        } else { echo $this->notification("Die gewählte Größe, Menge des Produkts ist leider nciht mehr auf Lager.");}
 
     }
 
@@ -72,23 +74,33 @@ class cart {
         return $this->cartcount() <= 0;
     }
 
-    public function deleteitem($delete_id) {
+    public function deleteitem($delete_id, $size) {
 
-        if ($this->cartcount() < 2) { unset($_SESSION["cart"]); } else {
+        if ($this->cartcount() < 2) { unset($_SESSION["cart"]); $nothing = true; } else {
             foreach($_SESSION["cart"] as $subkey => $subarray){
-                if($subarray["product_id"] == $delete_id){
+                if($subarray["product_id"] == $delete_id && $subarray["size"] == $size){
                     unset($_SESSION["cart"][$subkey]);
                 }
             }}
 
-        echo "Das Produkt wurde erfolgreich entfernt";
+        echo $this->notification("Das Produkt wurde erfolgreich entfernt");
+        return $nothing;
+    }
+
+    public function notification($content) {
+
+        return "
+        <div class='notification '>
+        ".$content."
+        </div>
+        ";
 
     }
     public function getcart() {
 
-
+        $nothing = false;
         if (isset($_GET["deleteid"])) {
-            $this->deleteitem($_GET["deleteid"]);
+            $this->deleteitem($_GET["deleteid"],$_GET["deletesize"]);
         }
         if($_POST["update"]) {
             $newcart = $_POST["qty"];
@@ -96,13 +108,13 @@ class cart {
         }
         if($_POST["coupon"]) {
 
-            echo "Aktuell ist die Gutschein Funktion inaktiv.";
+            echo $this->notification("Aktuell ist die Gutschein Funktion inaktiv.");
 
         }
 
         $totalprice = 0;
         $i = 0;
-        if (isset($_SESSION["cart"]) || !empty($_SESSION["cart"])) {
+        if (isset($_SESSION["cart"]) || !empty($_SESSION["cart"]) || $nothing) {
             ?><form action="index.php?page=cart&cart=show" method="post">
             <div class="cartbox">
 
@@ -146,7 +158,7 @@ class cart {
                 echo "
         <div class=\"cart_row\">
         <div class=\"box\">
-            <a href='index.php?page=cart&cart=show&deleteid=".$subarray["product_id"]."' class=\"cart_delete vertical_align_middle\">X</a>
+            <a href='index.php?page=cart&cart=show&deleteid=".$subarray["product_id"]."&deletesize=".$subarray["size"]."' class=\"cart_delete vertical_align_middle\">X</a>
         </div>
         <div class=\"box\">
             <img class=\"cart_image\" src='images/products/".$imgurl."' alt='product placeholder'>
@@ -160,7 +172,7 @@ class cart {
         <div class=\"box\">
        <input type='hidden' name='qty[".$i."][product_id]' value='".$subarray['product_id']."'>
        <input type='hidden' name='qty[".$i."][size]' value='".$subarray["size"]."'>
-               <input class=\"quantity vertical_align_middle \" type=\"number\" name=\"qty[".$i."][quantity]\" min=\"1\" max=\"9\" step=\"1\" value=\"".$subarray["quantity"]."\">
+               <input class=\"cart-quantity vertical_align_middle \" type=\"number\" name=\"qty[".$i."][quantity]\" min=\"1\" max=\"9\" step=\"1\" value=\"".$subarray["quantity"]."\">
         </div>
         <div class=\"box\">
             <span class=\"cart_price vertical_align_middle \">".$result2['price'] * $subarray["quantity"] ." €</span>
@@ -187,8 +199,9 @@ class cart {
                     Gesamtpreis: <?php echo $totalprice; ?> €
                 </div>
                 <a class="btn-link tocheckout" style="width: 150px;" href="index.php?page=cart&cart=checkout">Zur Kasse</a>
+                <a style="float: left; margin-top: 30px;" class="btn-link" href="index.php">Weiter einkaufen</a>
+                <div class="clearfloat"></div>
             </div>
-            <div class="clearfloat"></div>
 
             </form>
 
@@ -198,6 +211,71 @@ class cart {
 <a class="btn-link" href="index.php">Zurück zum Shop</a></div>';
 
         }
+    }
+
+    public function getsummary() {
+
+        ?>
+<div class="checkout_summary">
+        <h2>Zusammenfassung</h2>
+
+        <table style="width:100%">
+            <tr>
+                <th>Produkt</th>
+                <th>Gesamtsumme</th>
+            </tr>
+            <?php
+            $total = 0;
+            foreach ($_SESSION["cart"] as $subkey => $subarray) {
+
+                $id = $subarray["product_id"];
+                $statement = $this->conn->prepare("SELECT * FROM products WHERE id = :id");
+                $statement->bindParam(':id', $id);
+                $statement->execute();
+                $result2 = $statement->fetch();
+
+
+                if (!empty($result2['img'])) {
+                    $imgurl = $result2['img'];}
+                else {
+                    $imgurl = "placeholder.jpg";
+                }
+                echo "
+    
+ <tr>
+    <td>
+        <div class='checkout_pleft'>
+            <img class='cart_image' src='images/products/".$imgurl."' alt='product placeholder'>
+        </div>
+        <div class='checkout_pright'>
+           <span class=\"cart_desc vertical_align_middle \">" . $result2['name'] . "<br>Größe: ".$subarray["size"]."<br>Menge: ".$subarray["quantity"]."</span>
+        </div>
+
+    </td>
+    <td><span class=\"cart_price vertical_align_middle \">".$result2['price'] * $subarray["quantity"]." €</span></td>
+  </tr>
+  ";
+                //Gesamtsumme berechnen
+                $total += $result2['price'] * $subarray["quantity"];
+
+            } ?>
+<tr>
+    <td>Zwischensumme</td>
+    <td><?php echo $total; ?> €</td>
+</tr>
+<tr>
+    <td>Versandkosten</td>
+    <td>Kostenlos</td>
+</tr>
+<tr>
+    <td>Gesamtsumme</td>
+    <td><?php echo $total; ?> €</td>
+</tr>
+</table>
+
+</div>
+
+<?php
     }
 
 }

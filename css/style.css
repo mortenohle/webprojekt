@@ -670,6 +670,13 @@ fieldset label {
     position: relative;
     top: 50%;
     transform: translateY(-50%);}
+/** Notification Box **/
+.notification {
+    padding: 20px 10px;
+    margin: 20px 0;
+    background: #F7F7F7;
+    border: 1px solid #e3e3e3;
+}
 
 /** Cart Design **/
 .cart_header, .cart_row {
@@ -718,6 +725,9 @@ fieldset label {
 .cart_summary {
     margin: 30px 0;
 }
+below-summary {
+    margin: 20px 0;
+}
 .tocheckout {
     display: block;
     margin-top: 30px;
@@ -728,6 +738,15 @@ fieldset label {
 .clearfloat{
     clear: both;
 }
+
+/* nothing in cart message */
+.error_message {
+    display: block;
+    font-size: 20px;
+}
+.error_dialog {
+     text-align: center;
+ }
 
 /* Responsive Cart */
 @media screen and (max-width: 800px) {
@@ -777,6 +796,8 @@ fieldset label {
     .prod_desc {
         margin: 5px 0;
     }
+    .cart-quantity {
+        width: 60px !important;}
 }
 
 /** Responsive Layout **/

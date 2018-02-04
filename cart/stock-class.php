@@ -31,10 +31,7 @@ class stockmanagement  {
 
     public function reducestock($id, $qty, $size) {
 
-        $statement = $this->conn->prepare("UPDATE stock SET :size = size - :qty WHERE product_id = :id ");
-        $statement->bindParam(':size', $size);
-        $statement->bindParam(':qty', $qty);
-        $statement->bindParam(':id', $id);
+        $statement = $this->conn->prepare("UPDATE stock SET ".$size." = (".$size." - ".$qty.") WHERE product_id =".$id);
         $statement->execute();
 
     }

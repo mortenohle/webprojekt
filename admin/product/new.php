@@ -172,6 +172,7 @@ if ($_GET["action"] == "new") {
 
             $stmt->execute();
 
+
             echo "
             <div class='row-full-width'>
             Das Produkt wurde erfolgreich hinzugefügt!

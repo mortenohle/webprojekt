@@ -6,11 +6,9 @@
  * Time: 22:52
  */
 
-
+if (isset($_SESSION["cart"]) || !empty($_SESSION["cart"])) {
 
 include_once('db/connect.php');
-
-
 $total = 0;
 
 $cart_items = $_SESSION["cart"];
@@ -66,10 +64,7 @@ if (isset($_SESSION["userid"])) {
         <p class="form-row-right">
     <input type='text' name='postcode' placeholder="PLZ" value="<?php echo $result["postcode"] ?>" required>
         </p>
-        <p class="form-row-left">
-    <input type='tel' name='phone' placeholder="Telefon" required>
-        </p>
-        <p class="form-row-right">
+        <p class="form-row-wide">
     <input type='email' name='email' placeholder="Email" value="<?php echo $result["email"] ?>" <?php if (isset($result["email"])) {echo "readonly";}?> required>
         </p>
 
@@ -90,61 +85,8 @@ if (isset($_SESSION["userid"])) {
     </fieldset>
     </div>
 
-    <div class="checkout_summary">
-    <h2>Zusammenfassung</h2>
-
-    <table style="width:100%">
-        <tr>
-            <th>Produkt</th>
-            <th>Gesamtsumme</th>
-        </tr>
-        <?php
-        $sql_for_cart = "SELECT * FROM products WHERE id IN (".$cart_ids.")";
-        foreach ($con->query($sql_for_cart) as $row) {
-            $id = $row['id'];
-            foreach($_SESSION["cart"] as $subkey => $subarray){
-                if($subarray["product_id"] == $id){
-                    $loopqty = ($_SESSION["cart"][$subkey]["quantity"]);
-                }
-            }
-            if (!empty($row['img'])) {
-                $imgurl = $row['img'];}
-            else {
-                $imgurl = "placeholder.jpg";
-            }
-            echo "
-    
- <tr>
-    <td>
-        <div class='checkout_pleft'>
-            <img class='cart_image' src='images/products/".$imgurl."' alt='product placeholder'>
-        </div>
-        <div class='checkout_pright'>
-           <span class=\"cart_desc\">".$row['name']."<br>Menge: ".$loopqty."</span>
-        </div>
-
-
-    </td>
-    <td><span class=\"cart_price vertical_align_middle \">".$row['price'] * $loopqty." €</span></td>
-  </tr>
-  ";
-            //Gesamtsumme berechnen
-            $total += $row['price'] * $loopqty;
-
-        } ?>
-        <tr>
-            <td>Zwischensumme</td>
-            <td><?php echo $total; ?> €</td>
-        </tr>
-        <tr>
-            <td>Versandkosten</td>
-            <td>Kostenlos</td>
-        </tr>
-        <tr>
-            <td>Gesamtsumme</td>
-            <td><?php echo $total; ?> €</td>
-        </tr>
-    </table>
+    <?php $cart->getsummary(); ?>
+    <div class="below-summary">
         <div class="agb-check">
         <input id="checkbox-agb" type="checkbox" name="agbs" required>
         <label for="checkbox-agb">
@@ -154,8 +96,16 @@ if (isset($_SESSION["userid"])) {
     </div>
 
     <input style="float: right;" type='submit' value='kostenpflichtig Bestellen' name='checkout'>
+    <a style="float: left;" class="btn-link" href="index.php">Weiter einkaufen</a>
     <div class="clearfloat"></div>
 
 </form>
 
 </div>
+
+<?php
+} else {
+    echo '<div class="error_dialog"> <span class="error_message">Dein Warenkorb ist leer.</span><br>
+<a class="btn-link" href="index.php">Zurück zum Shop</a></div>';
+
+}

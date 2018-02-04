@@ -6,11 +6,21 @@
  * Time: 19:58
  */
 
-//Everything below is deprecated. Just leave it as a Fallback Solution
+//$stock->reducestock(1,1,"s");
 
+$email ="morten.ohle@icloud.com";
+$subject = "Test";
+$content = "Hallo Guten Tag";
+$absender = "From:LOGO Shop <info@logoshop.de>";
+
+//$email->sendmail($email,$subject,$content);
+
+mail($email,$subject,$content,$absender);
+//Everything below is deprecated. Just leave it as a Fallback Solution
+/*
 if($_POST["update"]) {
 
-   /* $prod_id = $_POST['prod_id'];
+   $prod_id = $_POST['prod_id'];
     $new_qty = $_POST['quantity'];
 
     print_r($prod_id);
@@ -18,7 +28,7 @@ if($_POST["update"]) {
 
     foreach( $prod_id as $key => $id ) {
         $_SESSION["cart"][$id] = $new_qty[$key];
-    } */
+    }
 
    $newcart = $_POST["qty"];
 
@@ -28,7 +38,7 @@ if($_POST["update"]) {
 
 
 
-   /* foreach($qty as $subkey => $subarray){
+    foreach($qty as $subkey => $subarray){
         if($subarray["prod_id"] == $prod_id){
             $_SESSION["cart"][$subkey]["quantity"] = $new_qty;
         }
@@ -41,7 +51,7 @@ if($_POST["update"]) {
         }
         $i++;
     }
-    print_r($_SESSION["cart"]); */
+    print_r($_SESSION["cart"]);
 
 }
 if($_POST["coupon"]) {
@@ -54,5 +64,5 @@ if($_POST["checkout"]) {
     include_once('cart/checkout.php');
     
 
-}
+} */
 

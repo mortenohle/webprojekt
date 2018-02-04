@@ -36,18 +36,8 @@ if (strlen($_POST["email"]) < 2) {
     echo "Bitte gebe eine Email ein <br>";
 }
 if ($error == true) {
-echo "<a style='margin-top: 10px;' class=\"btn-link\" href=\"index.php?page=cart&cart=checkout\">Zurück</a>";
+    echo "<a style='margin-top: 10px;' class=\"btn-link\" href=\"index.php?page=cart&cart=checkout\">Zurück</a>";
 }
-
-echo "Werte: <br>";
-echo $_POST["firstname"]."<br>";
-echo $_POST["lastname"]."<br>";;
-echo $_POST["street"]."<br>";;
-echo $_POST["postcode"]."<br>";;
-echo $_POST["city"]."<br>";;
-echo $_POST["email"]."<br>";;
-echo $_POST["phone"]."<br>";;
-
 if (!$error) {
 
     $firstname = $_POST["firstname"];
@@ -56,7 +46,6 @@ if (!$error) {
     $postcode = $_POST["postcode"];
     $city = $_POST["city"];
     $email = $_POST["email"];
-    $phone = $_POST["phone"];
 
     if (!isset($_SESSION["userid"])) {
         $user_id = 0;
@@ -93,26 +82,18 @@ if (!$error) {
         //aktuellen Preis einfügen
 
         foreach ($_SESSION["cart"] as $key => $value) {
-            //echo "id: ".$value["product_id"];
             $sql_for_price = "SELECT * FROM products WHERE id = " . $value["product_id"];
             $pricing = $con->query($sql_for_price);
             $priceresult = $pricing->fetch();
-
-            //echo $priceresult["price"];
             $_SESSION["cart"][$key]["price"] = $priceresult["price"];
         }
-        print_r($_SESSION["cart"]);
-        echo "<br>";
 
         $cart_items = $_SESSION["cart"];
         $json_cart = json_encode($cart_items);
 
-        echo $json_cart . "<br>";;
-
         $address = $firstname . " " . $lastname . "<br>" . $street . "<br>" . $postcode . " " . $city;
 
-//order in DB Schreiben
-
+        //order in DB Schreiben
         $statement2 = $con->prepare("INSERT INTO orders (id, products, address, user_id) VALUES (:id, :products, :address, :userid)");
         $null = null;
         $statement2->bindParam(':id', $null, PDO::PARAM_NULL);
@@ -120,17 +101,63 @@ if (!$error) {
         $statement2->bindParam(':address', $address, PDO::PARAM_STR);
         $statement2->bindParam(':userid', $user_id, PDO::PARAM_INT);
         $statement2->execute();
-//Lagerbestand reduzieren
+
+        //Bestellnummer holen
+        $orderid = $con->lastInsertId();
+        //Lagerbestand reduzieren
         foreach ($_SESSION["cart"] as $subkey => $subarray) {
             $id = $subarray["product_id"];
             $stock->reducestock($subarray["product_id"],$subarray["quantity"],$subarray["size"]);
         }
-    //Email Bestätigung an Kunden senden
+        //Email Bestätigung an Kunden senden
 
+        // Tabelle für Email generieren
+        $ordertablebody = "";
+        $totalprice2 = 0;
+        foreach ($_SESSION["cart"] as $subkey => $subarray) {
 
+            $id = $subarray["product_id"];
+            $statement = $this->conn->prepare("SELECT * FROM products WHERE id = :id");
+            $statement->bindParam(':id', $id);
+            $statement->execute();
+            $result2 = $statement->fetch();
 
+            $totalprice2 += $result2['price'] * $subarray["quantity"];
 
+            $ordertablebody .= "<tr>
+        <td>".$result2['name']."<br>Größe: ".strtoupper($subarray["size"])."</td>
+        <td>".$subarray["quantity"]."</td>
+        <td>".$result2['price'] * $subarray["quantity"] ." €</td>
+    </tr>";
+        }
+        $ordertable = "<table>
+        <tr>
+            <th>Produkt</th>
+            <th>Menge</th>
+            <th>Preis</th>
+        </tr>".$ordertablebody."    <tr>
+            <td><b>Gesamtpreis</b></td>
+            <td> </td>
+            <td><b>".$totalprice2." €</b></td>
+        </tr>
+    </table>";
+$subject = "Deine Bestellung #".$orderid." bei LOGO";
+$content = "<h1>Danke für deine Bestellung bei LOGO.</h1><br>
+<p>Bestellnummer: #".$orderid."</p><br>
+<p>Hallo ".$firstname." ".$lastname.",<br>
+danke für deine Bestellung bei Logo. Nachfolgend siehst du alle Details zu deiner Bestellung.</p><br>".$ordertable."
+<p>Versandkosten: kostenlos<br>
+Zahlungsmethode: ".$_POST["payment"]."</p>
 
+<h2>Dein LOGO Store</h2>
+<p>
+<a style='margin-top: 10px;' href='https://mars.iuk.hdm-stuttgart.de/~mo043/index.php?page=legal&legal=impressum\'>Impressum</a>
+<a style='margin-top: 10px;' href='https://mars.iuk.hdm-stuttgart.de/~mo043/index.php?page=legal&legal=agb\'>AGB</a>
+<a style='margin-top: 10px;' href='https://mars.iuk.hdm-stuttgart.de/~mo043/index.php?page=legal&legal=widerruf\'>Widerrufsbelehrung</a>
+</p>";
+
+$absender = "From:LOGO Shop <info@logoshop.de>";
+mail($email,$subject,$content,$absender);
     }
     catch
         (PDOException $e) {
@@ -138,7 +165,7 @@ if (!$error) {
         }
     ?>
 
-    <h1>Danke für deine Bestellung</h1>
+    <h1>Danke für deine Bestellung - Nr. <?php echo $orderid; ?></h1>
     <p>Nachfolgend siehst du alle Details zu deiner Bestellung.</p>
 
     <h2>Adresse</h2>
@@ -164,67 +191,11 @@ if (!$error) {
 
         echo "<span>Klicke hier, um mit Kreditkarte zu bezahlen.</span>";
 
-    } ?>
+    }
 
-    <div class="checkout_summary">
-        <h2>Zusammenfassung</h2>
+    $cart->getsummary();
 
-        <table style="width:100%">
-            <tr>
-                <th>Produkt</th>
-                <th>Gesamtsumme</th>
-            </tr>
-            <?php
-            $sql_for_cart = "SELECT * FROM products WHERE id IN (" . $cart_ids . ")";
-            foreach ($con->query($sql_for_cart) as $row) {
-                $id = $row['id'];
-                foreach ($_SESSION["cart"] as $subkey => $subarray) {
-                    if ($subarray["product_id"] == $id) {
-                        $loopqty = ($_SESSION["cart"][$subkey]["quantity"]);
-                    }
-                }
-                if (!empty($row['img'])) {
-                    $imgurl = $row['img'];
-                } else {
-                    $imgurl = "placeholder.jpg";
-                }
-                echo "
-    
- <tr>
-    <td>
-        <div class='checkout_pleft'>
-            <img class='cart_image' src='images/products/" . $imgurl . "' alt='product placeholder'>
-        </div>
-        <div class='checkout_pright'>
-           <span class=\"cart_desc vertical_align_middle \">" . $row['name'] . "<br>Menge: " . $loopqty . "</span>
-        </div>
-
-
-    </td>
-    <td><span class=\"cart_price vertical_align_middle \">" . $row['price'] * $loopqty . " €</span></td>
-  </tr>
-  ";
-                //Gesamtsumme berechnen
-                $total += $row['price'] * $loopqty;
-
-            } ?>
-            <tr>
-                <td>Zwischensumme</td>
-                <td><?php echo $total; ?> €</td>
-            </tr>
-            <tr>
-                <td>Versandkosten</td>
-                <td>Kostenlos</td>
-            </tr>
-            <tr>
-                <td>Gesamtsumme</td>
-                <td><?php echo $total; ?> €</td>
-            </tr>
-        </table>
-
-    </div>
-
-    <?php unset($_SESSION["cart"]);
+    unset($_SESSION["cart"]);
 
 }
  ?>
