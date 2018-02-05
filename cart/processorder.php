@@ -127,7 +127,7 @@ if (!$error) {
             $ordertablebody .= "<tr>
         <td>".$result2['name']."<br>Größe: ".strtoupper($subarray["size"])."</td>
         <td>".$subarray["quantity"]."</td>
-        <td>".$result2['price'] * $subarray["quantity"] ." €</td>
+        <td>".$result2['price'] * $subarray["quantity"] ." &euro;</td>
     </tr>";
         }
         $ordertable = "<table>
@@ -138,16 +138,18 @@ if (!$error) {
         </tr>".$ordertablebody."    <tr>
             <td><b>Gesamtpreis</b></td>
             <td> </td>
-            <td><b>".$totalprice2." €</b></td>
+            <td><b>".$totalprice2." &euro;</b></td>
         </tr>
     </table>";
 $subject = "Deine Bestellung #".$orderid." bei LOGO";
-$content = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
-<html xmlns=\"http://www.w3.org/1999/xhtml\">
+$content = utf8_decode("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
+<html>
 <head>
     <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
     <title>Deine Bestellung im LOGO Shop</title>
-</head><h1>Danke für deine Bestellung bei LOGO.</h1><br>
+</head>
+<body>
+<h1>Danke für deine Bestellung bei LOGO.</h1><br>
 <p>Bestellnummer: #".$orderid."</p><br>
 <p>Hallo ".$firstname." ".$lastname.",<br>
 danke für deine Bestellung bei Logo. Nachfolgend siehst du alle Details zu deiner Bestellung.</p><br>".$ordertable."
@@ -159,10 +161,20 @@ Zahlungsmethode: ".$_POST["payment"]."</p>
 <a style='margin-top: 10px;' href='https://mars.iuk.hdm-stuttgart.de/~mo043/index.php?page=legal&legal=impressum\'>Impressum</a>
 <a style='margin-top: 10px;' href='https://mars.iuk.hdm-stuttgart.de/~mo043/index.php?page=legal&legal=agb\'>AGB</a>
 <a style='margin-top: 10px;' href='https://mars.iuk.hdm-stuttgart.de/~mo043/index.php?page=legal&legal=widerruf\'>Widerrufsbelehrung</a>
-</p>";
+</p>
+</body>
+</html>");
 
-$absender = "From:LOGO Shop <info@logoshop.de>";
-mail($email,$subject,$content,$absender);
+$absender = "info@logoshop.de";
+$antworten = "info@logoshop.de";
+
+$header  = "MIME-Version: 1.0\r\n";
+$header .= "Content-type: text/html; charset=iso-8859-1\r\n";
+$header .= "From: $absender\r\n";
+$header .= "Reply-To: $antworten\r\n";
+$header .= "X-Mailer: PHP ". phpversion();
+
+mail($email,$subject,$content,$header);
     }
     catch
         (PDOException $e) {
@@ -171,7 +183,7 @@ mail($email,$subject,$content,$absender);
     ?>
 
     <h1>Danke für deine Bestellung - Nr. <?php echo $orderid; ?></h1>
-    <p>Nachfolgend siehst du alle Details zu deiner Bestellung.</p>
+    <p>Nachfolgend siehst du alle Details zu deiner Bestellung. Außerdem senden wir dir gleiche eine Bestellbestätigung per Email.</p>
 
     <h2>Adresse</h2>
     <p>Die Liefer- und Rechnungsadresse deiner Bestellung lautet:</p>
