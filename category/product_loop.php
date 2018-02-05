@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pagination = "";
 
 //Pagination nur anzeigen, wenn mehr als eine Seite vorhanden ist
-    if($last != 1) {
+    if($last > 3) {
         //Button zur vorherigen Seite, wird nicht auf der ersten Seite angezeigt
         if($page_number > 1) {
             $previous = $page_number - 1;
