@@ -13,6 +13,15 @@ if (isset($_GET["page"]))
         case "myprofile":
             include "account/profil.php";
             break;
+        case "profileedit":
+            include "account/persoenlichedaten.php";
+            break;
+        case "profileupdate":
+            include "account/speichern_persoenlichedaten.php";
+            break;
+        case "myorders":
+            include "account/orders.php";
+            break;
         case "registrieren":
             include "account/registrieren.php";
             break;
