@@ -1004,6 +1004,11 @@ below-summary {
     .nav-wrap {display: block !important;}
 }
 
+@media screen and (max-width: 999px) {
+    .contentbox {
+        width: 50%;
+    }
+}
 @media screen and (max-width: 899px) {
     body {padding-top: 60px;}
     header {height: 60px;}
@@ -1098,6 +1103,9 @@ below-summary {
     }
     .order-fw-footer .order-col {display: block; width: 100%; margin-right: 0;}
     .order-fw-footer .order-col.total {padding-left: 0; padding-top: 20px;}
+    .contentbox {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 499px) {
