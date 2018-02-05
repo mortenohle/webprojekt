@@ -5,6 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $e_mail = $_POST['e_mail'];
     $passwort = $_POST['passwort'];
 
+    $location = "<script>window.location = 'index.php';</script>";
+
     include_once("db/connect.php");
 
     try {
@@ -21,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['status'] = true;
             $_SESSION['userid'] = $row["id"];
             $_SESSION['username'] = $row["firstname"];
-            header('Location: index.php');
+            echo $location;
         } else {
             if ($e_mail == $row['email']) {
                 echo "<div class='login-fehler'>Passwort falsch eingegeben!</div>";
