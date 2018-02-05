@@ -68,6 +68,36 @@ if ($_GET["action"] == "edit") {
                 </div>
 
                 <?php
+                $sql = "SELECT * FROM stock WHERE product_id = ".$id;
+                $result =$con->query($sql);
+                $stock = $result->fetch();
+                ?>
+
+                <h2 class="divider" style="padding-top: 20px;">Lagerbestand</h2>
+
+                <div class="row-2-col">
+                    <div class="col">
+                        <span class="input-heading">Größe S</span>
+                        <input type="number" value="<?php echo $stock["s"]; ?>" name="size_s">
+                    </div>
+                    <div class="col">
+                        <span class="input-heading">Größe M</span>
+                        <input type="number" value="<?php echo $stock["m"]; ?>" name="size_m">
+                    </div>
+                </div>
+
+                <div class="row-2-col">
+                    <div class="col">
+                        <span class="input-heading">Größe L</span>
+                        <input type="number" value="<?php echo $stock["l"]; ?>" name="size_l">
+                    </div>
+                    <div class="col">
+                        <span class="input-heading">Größe XL</span>
+                        <input type="number" value="<?php echo $stock["xl"]; ?>" name="size_xl">
+                    </div>
+                </div>
+
+                <?php
                 // Abfrage Produktbild
                 if ($row['img'] == "") {
                     $imgurl = "placeholder.jpg";
@@ -115,6 +145,27 @@ if ($_GET["action"] == "edit") {
 
     <?php
     } elseif ($_GET["action"] == "editsuccess") {
+
+    $product_name = $_POST['product_name'];
+    $product_description = $_POST['product_desc'];
+    $product_category = $_POST['product_category'];
+    $product_price = $_POST['product_price'];
+    $product_artnr = $_POST['product_artnr'];
+    $product_id = $_POST['product_id'];
+    $product_ean = $_POST['product_ean'];
+    $size_s = $_POST['size_s'];
+    $size_m = $_POST['size_m'];
+    $size_l = $_POST['size_l'];
+    $size_xl = $_POST['size_xl'];
+    $product_img = $_FILES['product_image']['name'];
+
+    $current_img = $_POST['current_img'];
+
+    if ($product_img == "") {
+        $product_img_url = $current_img;
+    } else {
+        $product_img_url = $product_img;
+    }
 
     $valid = true;
     if (empty($_POST["product_name"])) {
@@ -165,7 +216,7 @@ if ($_GET["action"] == "edit") {
 
             include_once('../db/connect.php');
 
-            $stmt = $con->prepare("UPDATE products SET `name` = :name, `desc` = :desc, category_id = :category_id, price = :price, artnr = :artnr, img = :img, ean = :ean WHERE id = :id ");
+            $stmt = $con->prepare("UPDATE products SET `name` = :name, `desc` = :desc, category_id = :category_id, price = :price, artnr = :artnr, img = :img, ean = :ean WHERE id = :id");
             $stmt->bindParam(':name', $product_name);
             $stmt->bindParam(':desc', $product_description);
             $stmt->bindParam(':category_id', $product_category);
@@ -174,25 +225,16 @@ if ($_GET["action"] == "edit") {
             $stmt->bindParam(':img', $product_img_url);
             $stmt->bindParam(':id', $product_id);
             $stmt->bindParam(':ean', $product_ean);
-
-            $product_name = $_POST['product_name'];
-            $product_description = $_POST['product_desc'];
-            $product_category = $_POST['product_category'];
-            $product_price = $_POST['product_price'];
-            $product_artnr = $_POST['product_artnr'];
-            $product_id = $_POST['product_id'];
-            $product_ean = $_POST['product_ean'];
-            $product_img = $_FILES['product_image']['name'];
-
-            $current_img = $_POST['current_img'];
-
-            if ($product_img == "") {
-                $product_img_url = $current_img;
-            } else {
-                $product_img_url = $product_img;
-            }
-
             $stmt->execute();
+
+
+            $stmt_stock = $con->prepare("UPDATE stock SET s = :s, m = :m, l = :l, xl = :xl WHERE product_id = :product_id");
+            $stmt_stock->bindParam(':product_id', $product_id);
+            $stmt_stock->bindParam(':s', $size_s);
+            $stmt_stock->bindParam(':m', $size_m);
+            $stmt_stock->bindParam(':l', $size_l);
+            $stmt_stock->bindParam(':xl', $size_xl);
+            $stmt_stock->execute();
 
             echo "
             <div class='row-full-width'>
