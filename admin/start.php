@@ -7,6 +7,17 @@ $sql_products = "SELECT products.*, categories.name AS cat_name FROM products JO
 <div class="row-2-col">
     <div class="col">
         <h2>Aktuelle Bestellugen</h2>
+        <ul>
+            <?php  $order_query = "SELECT * FROM orders";
+            foreach ($con->query($order_query)as $row){
+                }
+                ;
+                echo "
+            <li>Order Id: ".$row["id"]."</li>
+            <li>Order Address: ".$row["address"]."</li>
+            <li>Order User id: ".$row["user_id"]." </li>"
+            ?>
+        </ul>
     </div>
     <div class="col">
         <h2>Neu im Sortiment</h2>
