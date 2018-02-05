@@ -48,7 +48,7 @@ if(count($row)==0) {
     $empfaenger=$row['email'];
     $betreff="Dein neues Passwort für deinen Account";
     $absender="From:LOGO Shop <info@logoshop.de>";
-    $url_passwortcode="https://mars.iuk.hdm-stuttgart.de/~fh091/test/index.php?page=account&action=pwneu&userid=".$row['id']."&code=".$passwortcode;
+    $url_passwortcode="https://mars.iuk.hdm-stuttgart.de/~mo043/index.php?page=account&action=pwneu&userid=".$row['id']."&code=".$passwortcode;
     $text="Hallo ".$row['firstname'].",\n\nfür deinen Account auf LOGO wurde nach einem neuem Passwort gefragt. Um ein neues Passwort zu vergeben, rufe innerhalb der nächsten 24h die folgende Website auf:\n\n"
     .$url_passwortcode;
 

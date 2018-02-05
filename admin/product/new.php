@@ -52,6 +52,30 @@ if ($_GET["action"] == "new") {
                 <textarea name="product_desc"></textarea>
             </div>
 
+                <h2 class="divider">Lagerbestand</h2>
+
+                <div class="row-2-col">
+                    <div class="col">
+                        <span class="input-heading">Größe S</span>
+                        <input type="number" placeholder="Anzahl" name="size_s">
+                    </div>
+                    <div class="col">
+                        <span class="input-heading">Größe M</span>
+                        <input type="number" name="size_m" placeholder="Anzahl">
+                    </div>
+                </div>
+
+                <div class="row-2-col">
+                    <div class="col">
+                        <span class="input-heading">Größe L</span>
+                        <input type="number" placeholder="Anzahl" name="size_l">
+                    </div>
+                    <div class="col">
+                        <span class="input-heading">Größe XL</span>
+                        <input type="number" name="size_xl" placeholder="Anzahl">
+                    </div>
+                </div>
+
             <script type="text/javascript">
                 function readURL(input) {
                     if (input.files && input.files[0]) {
@@ -143,6 +167,26 @@ if ($_GET["action"] == "new") {
 
             include_once('../db/connect.php');
 
+            $product_name = $_POST['product_name'];
+            $product_desc = $_POST['product_desc'];
+            $product_category = $_POST['product_category'];
+            $product_price = $_POST['product_price'];
+            $product_artnr = $_POST['product_artnr'];
+            $product_ean = $_POST['product_ean'];
+            $product_img = $_FILES['product_image']['name'];
+            $size_s = $_POST['size_s'];
+            $size_m = $_POST['size_m'];
+            $size_l = $_POST['size_l'];
+            $size_xl = $_POST['size_xl'];
+
+            $placeholder_img = "placeholder.jpg";
+
+            if ($product_img == "") {
+                $product_img_url = $placeholder_img;
+            } else {
+                $product_img_url = $product_img;
+            }
+
             $stmt = $con->prepare("INSERT INTO products (id, `name`, `desc`, category_id, price, artnr, img, ean) VALUES (:id, :product_name, :product_desc, :category_id, :price, :artnr, :img, :ean)");
             $myNull = null;
             $stmt->bindParam(':id', $myNull, PDO::PARAM_NULL);
@@ -154,23 +198,19 @@ if ($_GET["action"] == "new") {
             $stmt->bindParam(':img', $product_img_url, PDO::PARAM_STR);
             $stmt->bindParam(':ean', $product_ean, PDO::PARAM_INT);
 
-            $product_name = $_POST['product_name'];
-            $product_desc = $_POST['product_desc'];
-            $product_category = $_POST['product_category'];
-            $product_price = $_POST['product_price'];
-            $product_artnr = $_POST['product_artnr'];
-            $product_ean = $_POST['product_ean'];
-            $product_img = $_FILES['product_image']['name'];
-
-            $placeholder_img = "placeholder.jpg";
-
-            if ($product_img == "") {
-                $product_img_url = $placeholder_img;
-            } else {
-                $product_img_url = $product_img;
-            }
-
             $stmt->execute();
+
+            $last_id = $con->lastInsertId();
+
+            $stmt_order = $con->prepare("INSERT INTO stock (id, product_id, s, m, l, xl) VALUES (:stock_id, :product_id, :s, :m, :l, :xl)");
+            $myNull = null;
+            $stmt_order->bindParam(':stock_id', $myNull, PDO::PARAM_NULL);
+            $stmt_order->bindParam(':product_id', $last_id, PDO::PARAM_STR);
+            $stmt_order->bindParam(':s', $size_s, PDO::PARAM_INT);
+            $stmt_order->bindParam(':m', $size_m, PDO::PARAM_INT);
+            $stmt_order->bindParam(':l', $size_l, PDO::PARAM_INT);
+            $stmt_order->bindParam(':xl', $size_xl, PDO::PARAM_INT);
+            $stmt_order->execute();
 
 
             echo "
