@@ -60,7 +60,7 @@ include_once "cart/stock-class.php";
             <div class="nav-right">
                 <ul class="">
                     <?php if(isset($_SESSION["username"])) { ?>
-                       <li class="loggedinuser">Hallo, <?php echo $_SESSION['username']; ?>
+                        <li class="loggedinuser"><a href="index.php?page=account&action=myprofile">Hallo, <?php echo $_SESSION['username']; ?></a>
                            <ul class="transition">
                                <div class="user-dropdown-wrap">
                                <li class="user-profile"><a href="index.php?page=account&action=myprofile">Mein Profil</a></li>
