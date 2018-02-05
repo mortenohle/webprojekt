@@ -49,7 +49,7 @@ if ($_GET["action"] == "new") {
         <p class='new-alert'>Die Kategorie <b>". $category_name."</b> wurde erfolgreich hinzugefügt!</p>
         </div>
         <div class='row-full-width'>
-        <button class='btn-link' href='index.php?page=category&action=show'>Zu den Kategorien</button>
+        <a class='btn-link' href='index.php?page=category&action=show'>Zu den Kategorien</a>
         </div>";
     } else {
 ?>
