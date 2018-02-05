@@ -340,6 +340,7 @@ a.login-link-bottom:hover {color: #d2b598;}
     text-align: center;
     padding-bottom: 20px;
 }
+
 /** Nutzerprofil **/
 #wrapper_kundendaten {
     display: block;
@@ -453,6 +454,29 @@ span.select_heading {
 .content_kundenkonto.alert a.btn-link, .content_kundenkonto.alert button {
     margin-top: 20px;
 }
+
+/** Kundenkonto Bestellungen **/
+.single-order {display: block; width: 100%; font-size: 0; padding: 10px; color: #666; box-sizing: border-box;}
+.single-order .order-img {display: inline-block; width: 20%; font-size: 15px;}
+.single-order .img-thumb {width: 60px; height: 60px; background-size: cover !important; background-position: center center; background: #EEE;}
+.single-order .order-detail {display: inline-block; width: 80%; font-size: 15px; vertical-align: top;}
+.complete-order {border: 1px solid #EEE; margin-bottom: 20px;}
+.complete-order.fw {margin-bottom: 20px;}
+.order-number {padding: 10px; border-bottom: 1px solid #EEE;}
+.order-summary {padding: 10px; border-top: 1px solid #EEE; color: #666;}
+.price-output {font-weight: 700;}
+span.name {padding-bottom: 3px; display: block;}
+span.size-output {text-transform: uppercase;}
+span.size {display: inline-block; width: 49%;}
+span.count {display: inline-block; width: 49%;}
+span.price {display: block; padding-top: 3px;}
+.single-order.fw span.size, .single-order.fw span.count, .single-order.fw span.price {width: 33%; display: inline-block;}
+.single-order.fw span.price {width: 30%;}
+.order-fw-footer {display: block; width: 100%; font-size: 0; padding: 10px; border-top: 1px solid #EEE; box-sizing: border-box; color: #666;}
+.order-fw-footer .order-col {display: inline-block; width: 48%; margin-right: 4%; font-size: 15px; vertical-align: middle;}
+.order-fw-footer .order-col.total {padding-left: 21.5%; box-sizing: border-box;}
+.order-fw-footer .order-col:last-child {margin-right: 0;}
+.order-adresse {display: block; padding-bottom: 5px; font-weight: 700;}
 
 /**Registrierung**/
 
@@ -995,11 +1019,41 @@ below-summary {
     button[type="submit"] img {width: 18px;}
     .pwrapper {grid-template-columns: 1fr 1fr; grid-column-gap: 20px;}
     .box {margin-bottom: 20px;}
+    .container_kundenkonto .kundenkonto_col {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+    }
+    .container_kundenkonto .kundenkonto_col:first-child {
+        margin-bottom: 20px;
+    }
 }
 
+@media screen and (min-width: 799px) {
+    .menu_kundenkonto {
+        display: block !important;
+    }
+}
 @media screen and (max-width: 799px) {
     .col2.single-product-page {grid-template-columns: 1fr; grid-column-gap: 0; max-width: 500px; margin-left: auto; margin-right: auto;}
     .prod_price {margin: 0;}
+    .sidenav_kundenkonto li {
+        display: block;
+        padding: 0 0 20px 0;
+        margin-right: 0;
+    }
+    .sidenav_kundenkonto li.active {
+        border-bottom: none;
+    }
+    .menu_kundenkonto {
+        border-bottom: none;
+        display: none;
+        padding: 0 22px;
+        box-sizing: border-box;
+    }
+    .kundenkonto_menu_toggle {
+        display: block;
+    }
 }
 @media screen and (max-width: 699px) {
     #main-slider li {background-position: 80% top;}
@@ -1010,9 +1064,24 @@ below-summary {
     .slide-content .slide-heading {padding-bottom: 12px;}
     .slide-content a.btn-link {margin-top: 16px;}
 }
+@media screen and (max-width: 599px) {
+    .single-order.fw span.size, .single-order.fw span.count, .single-order.fw span.price {
+        width: 45%;
+        display: inline-block;
+    }
+
+    .single-order.fw span.price {
+        width: 100%;
+        display: block;
+    }
+    .order-fw-footer .order-col {display: block; width: 100%; margin-right: 0;}
+    .order-fw-footer .order-col.total {padding-left: 0; padding-top: 20px;}
+}
 
 @media screen and (max-width: 499px) {
     .pwrapper {grid-template-columns: 1fr; grid-column-gap: 0;}
+    .single-order .order-img {width: 30%;}
+    .single-order .order-detail {width: 70%;}
 }
 
 
