@@ -44,7 +44,7 @@ class cart {
 
             echo $this->notification("<span>Das Produkt wurde zum Warenkorb hinzugefügt. <a href='index.php?page=cart&cart=show'>Zum Warenkorb</a> </span>");
 
-        } else { echo $this->notification("Die gewählte Größe, Menge des Produkts ist leider nciht mehr auf Lager.");}
+        } else { echo $this->notification("Die gewählte Größe, Menge des Produkts ist leider nicht mehr auf Lager.");}
 
     }
 
