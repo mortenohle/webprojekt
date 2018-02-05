@@ -64,7 +64,7 @@ include_once "cart/stock-class.php";
                            <ul class="transition">
                                <div class="user-dropdown-wrap">
                                <li class="user-profile"><a href="index.php?page=account&action=myprofile">Mein Profil</a></li>
-                               <li class="user-orders"><a href="#">Meine Bestellungen</a></li>
+                               <li class="user-orders"><a href="index.php?page=account&action=myorders">Meine Bestellungen</a></li>
                                <li class="user-logout"><a href="index.php?page=account&action=logout">Abmelden</a></li>
                                </div>
                            </ul>
