@@ -97,7 +97,7 @@ li.user-profile a:before {content: "\f2c0"; font-family: FontAwesome; padding-ri
     z-index: 99;
 }
 a.cart_widget_link.btn-link.btn-small {
-    width: 34%;
+    width: 94px;
     text-align: center;
     color: #d5b598;
 }
@@ -324,7 +324,7 @@ button.btn-link.fw{
 }
 
 
-.loginbox input[type="email"], .loginbox input[type="password"]{
+.loginbox input[type="email"], .loginbox input[type="password"], input[type="password"]{
     border:1px solid #DDDDDD;
     outline: none;
     height: 40px;

@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // Shrinked Header
 
-    var $document = $(document)
+    var $document = $(document);
 
     $document.scroll(function() {
         if ($document.scrollTop() >= 60) {

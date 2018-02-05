@@ -113,7 +113,7 @@ if ($_GET["action"] == "edit") {
 
                             reader.onload = function (e) {
                                 $('#productimage').attr('src', e.target.result);
-                            }
+                            };
 
                             reader.readAsDataURL(input.files[0]);
                         }

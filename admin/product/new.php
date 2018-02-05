@@ -83,7 +83,7 @@ if ($_GET["action"] == "new") {
 
                         reader.onload = function (e) {
                             $('#productimage').attr('src', e.target.result);
-                        }
+                        };
 
                         reader.readAsDataURL(input.files[0]);
                     }

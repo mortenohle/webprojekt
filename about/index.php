@@ -39,7 +39,7 @@
     <div class='contentbox'>
         <img src="images/team_fatma.jpg" class="team" alt="Team Fatma">
         <h3>Fatma El air</h3>
-        <h4>CEO/Creative Director</h4><br>
+        <h4>Creative Director</h4><br>
         <p>Fatma ist CEO und Creative Director von "LOGO". Sie entwickelt neue Designs
             und definiert die Markenidentität sowie Außenkommunikation.
             Außerdem ist er für alle Marketingmaßnahmen und Kooperationen zuständig.
