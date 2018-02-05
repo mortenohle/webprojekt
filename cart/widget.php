@@ -1,3 +1,7 @@
+
+
+//Everything below is deprecated. Just leave it as a Fallback Solution
+
 <div class="cart_widget_wrapper">
 <?php
 /**

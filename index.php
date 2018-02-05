@@ -78,7 +78,7 @@ include_once "cart/stock-class.php";
                         <?php if (!$cart->isempty()) { ?>
                         <ul class="transition">
                             <div class="user-dropdown-wrap cartwidget">
-                                <?php include_once "cart/widget.php"; ?>
+                                <?php $cart->getcartwidget(); ?>
 
 
                             </div>

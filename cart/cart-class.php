@@ -164,7 +164,7 @@ class cart {
             <img class=\"cart_image\" src='images/products/".$imgurl."' alt='product placeholder'>
         </div>
         <div class=\"box\">
-            <span class=\"cart_desc vertical_align_middle \">".$result2['name']."<br>Größe: ".strtoupper($subarray["size"])."</span>
+            <span class=\"cart_desc vertical_align_middle \"><a href='index.php?page=product&product=show&id=".$result2['id']."'>".$result2['name']."</a><br>Größe: ".strtoupper($subarray["size"])."</span>
         </div>
         <div class=\"box pricing\">
             <span class=\"cart_price vertical_align_middle \">".$result2['price']." €</span>
@@ -248,7 +248,7 @@ class cart {
             <img class='cart_image' src='images/products/".$imgurl."' alt='product placeholder'>
         </div>
         <div class='checkout_pright'>
-           <span class=\"cart_desc vertical_align_middle \">" . $result2['name'] . "<br>Größe: ".$subarray["size"]."<br>Menge: ".$subarray["quantity"]."</span>
+           <span class=\"cart_desc vertical_align_middle \">" . $result2['name'] . "<br>Größe: ".strtoupper($subarray["size"])."<br>Menge: ".$subarray["quantity"]."</span>
         </div>
 
     </td>
@@ -273,6 +273,50 @@ class cart {
 </tr>
 </table>
 
+</div>
+
+<?php
+    }
+
+    public function getcartwidget() {
+        ?>
+<div class="cart_widget_wrapper">
+<?php
+
+foreach ($_SESSION["cart"] as $subkey => $subarray) {
+
+            $id = $subarray["product_id"];
+            $statement = $this->conn->prepare("SELECT * FROM products WHERE id = :id");
+            $statement->bindParam(':id', $id);
+            $statement->execute();
+            $result2 = $statement->fetch();
+
+            if (!empty($result2['img'])) {
+                $imgurl = $result2['img'];}
+            else {
+                $imgurl = "placeholder.jpg";
+            }
+    echo "
+<div class=\"cart_in_widget\">
+    <div class=\"cart_widget_img\">
+        <img class=\"cart_image\" src='images/products/".$imgurl."' alt='product placeholder' style=\"
+    width: 40px !important;\">
+    </div>
+    <div class=\"cart_widget_dsc\">
+        <span class=\"cart_desc \"><a href='index.php?page=product&product=show&id=".$result2['id']."'>".$result2['name']."</a></span>
+    </div>
+    <div class=\"cart_widget_price\">
+        <span class=\"cart_price \">".$result2['price'] * $subarray["quantity"]." €</span>
+    </div>
+    </div>
+     ";
+
+}
+?>
+<div class='cart_in_widget'>
+    <a class='cart_widget_link btn-link btn-small' href='index.php?page=cart&cart=show'>Warenkorb</a>
+    <a class='cart_widget_link btn-link btn-small' href='index.php?page=cart&cart=checkout'>Kasse</a>
+</div>
 </div>
 
 <?php
