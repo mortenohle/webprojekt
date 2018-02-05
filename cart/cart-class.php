@@ -248,11 +248,11 @@ class cart {
             <img class='cart_image' src='images/products/".$imgurl."' alt='product placeholder'>
         </div>
         <div class='checkout_pright'>
-           <span class=\"cart_desc vertical_align_middle \">" . $result2['name'] . "<br>Größe: ".strtoupper($subarray["size"])."<br>Menge: ".$subarray["quantity"]."</span>
+           <span class=\"cart_desc \">" . $result2['name'] . "<br>Größe: ".strtoupper($subarray["size"])."<br>Menge: ".$subarray["quantity"]."</span>
         </div>
 
     </td>
-    <td><span class=\"cart_price vertical_align_middle \">".$result2['price'] * $subarray["quantity"]." €</span></td>
+    <td><span class=\"cart_price \">".$result2['price'] * $subarray["quantity"]." €</span></td>
   </tr>
   ";
                 //Gesamtsumme berechnen

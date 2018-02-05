@@ -95,8 +95,8 @@ if (isset($_SESSION["userid"])) {
         </div>
     </div>
 
-    <input style="float: right;" type='submit' value='kostenpflichtig Bestellen' name='checkout'>
-    <a style="float: left;" class="btn-link" href="index.php">Weiter einkaufen</a>
+    <input class="checkoutbutton" style="float: right;" type='submit' value='kostenpflichtig Bestellen' name='checkout'>
+    <a class="btn-link checkoutbutton" style="float: left;" class="btn-link" href="index.php">Weiter einkaufen</a>
     <div class="clearfloat"></div>
 
 </form>

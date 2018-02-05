@@ -685,10 +685,10 @@ width: 100px;
 .rating-4-col .rating-col {display: inline-block; width: 25%; font-size: 15px; color: #666;}
 
 @media screen and (max-width: 650px) {
-    label {
+    #spp-tab-container label {
         font-size: 0;
     }
-    label:before {
+    #spp-tab-container label:before {
         margin: 0;
         font-size: 18px;
     }
@@ -935,7 +935,11 @@ below-summary {
 .clearfloat{
     clear: both;
 }
-
+.checkoutbutton {
+    width: 100%;
+    margin-bottom: 10px;
+    float: none;
+}
 /* nothing in cart message */
 .error_message {
     display: block;
@@ -1078,6 +1082,13 @@ below-summary {
     .slide-content p {font-size: 15px;}
     .slide-content .slide-heading {padding-bottom: 12px;}
     .slide-content a.btn-link {margin-top: 16px;}
+    .checkoutbutton {
+        width: 100% !important;
+        margin-bottom: 10px;
+        float: none !important;
+        box-sizing: border-box;
+        text-align: center;
+    }
 }
 @media screen and (max-width: 599px) {
     .single-order.fw span.size, .single-order.fw span.count, .single-order.fw span.price {

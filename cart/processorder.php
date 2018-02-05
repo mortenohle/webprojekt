@@ -117,7 +117,7 @@ if (!$error) {
         foreach ($_SESSION["cart"] as $subkey => $subarray) {
 
             $id = $subarray["product_id"];
-            $statement = $this->conn->prepare("SELECT * FROM products WHERE id = :id");
+            $statement = $con->prepare("SELECT * FROM products WHERE id = :id");
             $statement->bindParam(':id', $id);
             $statement->execute();
             $result2 = $statement->fetch();
@@ -142,7 +142,12 @@ if (!$error) {
         </tr>
     </table>";
 $subject = "Deine Bestellung #".$orderid." bei LOGO";
-$content = "<h1>Danke für deine Bestellung bei LOGO.</h1><br>
+$content = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
+<html xmlns=\"http://www.w3.org/1999/xhtml\">
+<head>
+    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
+    <title>Deine Bestellung im LOGO Shop</title>
+</head><h1>Danke für deine Bestellung bei LOGO.</h1><br>
 <p>Bestellnummer: #".$orderid."</p><br>
 <p>Hallo ".$firstname." ".$lastname.",<br>
 danke für deine Bestellung bei Logo. Nachfolgend siehst du alle Details zu deiner Bestellung.</p><br>".$ordertable."
