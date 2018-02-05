@@ -41,6 +41,12 @@ $(document).ready(function () {
         $(this).find('img').toggle();
     });
 
+    // Kundenkonto Menu Toggle
+    $('.kundenkonto_menu_toggle').stop().click(function() {
+        $('.menu_kundenkonto').slideToggle(500);
+        $(this).toggleClass('open');
+    });
+
     //reload page on change of select input
     $('#sortby').on('change', function() {
         document.getElementById("sort").submit();
